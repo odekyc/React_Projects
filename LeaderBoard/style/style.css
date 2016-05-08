@@ -1,0 +1,138 @@
+html{
+	background-color: #ccf2ff;
+	display: inline-block;
+    height: 1000px;
+}
+
+body{
+	display: inline-block;
+	background-color: #ccf2ff;
+
+    
+}
+
+.container{
+	background-color: #ccf2ff;
+	display: inline-block;  
+	height: 1000px;
+}
+
+#board{
+	position: relative;
+	display: inline-block;
+	height: 3000px;
+	width: 1000px;
+	margin-left: 215px;
+	background-color: white;
+	top: 130px;
+}
+
+head{
+	background-color: #ccf2ff;
+}
+
+
+
+#title{
+	height: 70px;
+	background-color: brown;
+	color: white;
+	font-size: 300%;
+	text-align: center;
+
+}
+
+div{
+	height: 70px;
+	background-color: grey;
+	color: black;
+	margin-bottom: 2px;
+	vertical-align: middle;
+}
+
+
+.odd{
+	background-color: #c2d1f0;
+}
+
+.even{
+	background-color: #b3cccc;
+}
+
+svg{
+	position: relative;
+	top: -38px;
+}
+
+.descriptc{
+	position:relative;
+	top: 18px;
+	left: 30px;
+	font-family: Arial;
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.points{
+	position: relative;
+	left: 163px;
+	top: 18px;
+	color: #004d00;
+	font-family: Arial;
+	font-size: 150%;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.alltime{
+	position: relative;
+	left: 275px;
+	top: 18px;
+	color: #004d00;
+	font-family: Arial;
+	font-size: 150%;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.myimg{
+	border: 3px solid black;
+	border-radius: 7px;
+}
+
+
+.name{
+	position: relative;
+	left: 50px;
+	top: 16px;
+	color: blue;
+	font-family: Arial;
+	font-size: 130%;
+	font-weight: normal;
+	
+}
+
+.plyrpt{
+	position: absolute;
+	left: 560px;
+	margin-top: 18px;
+	color: black;
+	font-family: Arial;
+	font-size: 130%;
+	font-weight: normal;
+}
+
+.allt{
+	position: absolute;
+	left: 870px;
+	margin-top: 18px;
+	color: black;
+	font-family: Arial;
+	font-size: 130%;
+	font-weight: normal;
+}
+
+
+
+
+

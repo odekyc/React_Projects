@@ -4,7 +4,7 @@ import Headings from './components/headings';
 import Paragraphs from './components/paragraphs';
 import Inbox from './components/inbox';
 
-const App= () => {
+const App = () => {
   return (
     <div>
     <div id="left">
