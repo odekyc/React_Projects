@@ -129,6 +129,19 @@ body{
 	 border-radius: 3px;
 }
 
+#newrecpe{
+	position: absolute;
+	left: 550px;
+	top: 200px;
+	height: 450px;
+	width: 400px;
+	background-color: white;
+	border: 5px solid black;
+	border-radius: 8px;
+	z-index: 3;
+	visibility: hidden;
+}
+
 li{
 	font-size: 60%;
 }
@@ -137,4 +150,9 @@ li{
 	position: relative;
 	margin-top: -25px;
 	font-size: 70%;
+}
+
+form{
+    position: relative;
+    left: 60px;
 }
