@@ -1,0 +1,140 @@
+#graybox{
+	position: absolute;
+	height: 140px;
+	width: 1000px;
+	background-color: #e0e0d1;
+	margin: 0 auto;
+	border-radius: 8px;
+	border: 2px solid #a3a375;
+	top: 200px;
+	left: 220px;
+	z-index: 1;
+    display: inline-block;
+
+}
+
+.dishes{
+	position: relative;
+	margin: 0 auto;
+	margin-top: 11.5px;
+	height: 50px;
+	width: 950px;
+	background-color: #ccffeb;
+    border-radius: 8px;
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 12px;
+
+}
+
+button{
+   position: relative;
+   height: 60px;
+   width: 110px;
+   background-color: blue;
+   top: 60px;
+}
+
+
+#ingredientBox{
+
+	border-radius: 10px;
+	border: 5px solid black;
+	background-color: #ffffcc;
+	height: 500px;
+	width: 600px;
+	position: relative;
+	top: 100px;
+	margin: 0 auto;
+	z-index: 2;
+    visibility: hidden;
+    font-size: 300%;
+
+}
+
+#content{
+	position: relative;
+	margin: 0 auto;
+	height: 250px;
+	width: 480px;
+	border: 5px solid grey;
+}
+
+
+html{
+   	background-color: yellow;
+}
+
+
+body{
+
+	display: inline;
+}
+
+#circle{
+    position: relative;
+    top: -50px;
+    left: 520px;
+	background-color: #9999ff;
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	font-weight: bold;
+	font-size: 80%;
+	
+}
+
+#x{
+	position: relative;
+    top: -5px;
+    left: 1px;
+}
+
+#ingre{
+	font-weight: bold;
+	position:relative;
+	top: 10px;
+}
+
+#recipeName{
+	position: relative;
+	font-size: 60%;
+	font-weight: bold;
+	top: -18px;
+	font-family: Arial;
+}
+
+#delete{
+	height: 50px;
+	width: 100px;
+	background-color: red;
+	border-radius: 3px;
+	color: white;
+	font-size:50%;
+	position: absolute;
+	left: 40px;
+	top: 400px;
+	border: 5px solid black;;
+}
+
+#edit{
+     border: 5px solid black;
+     height: 50px;
+	 width: 100px;
+	 font-size:50%;
+	 position: absolute;
+	 left: 150px;
+	 top: 400px;
+	 border-radius: 3px;
+}
+
+li{
+	font-size: 60%;
+}
+
+#allingres{
+	position: relative;
+	margin-top: -25px;
+	font-size: 70%;
+}
