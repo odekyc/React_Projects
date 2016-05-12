@@ -34,10 +34,17 @@ export default class Newrec extends Component {
   }         
 
   submitForm(){
+
     var dishname=$('#dishname').val();
+    alert(dishname);
     var ingredients=$('textarea').val();
-    alert(ingredients);
+    var res=ingredients.split(",");
+    var root = React.createElement('div', { className: 'dishes' });
+    root.textContent="hihihi";
+    ReactDOM.render(root, document.getElementById('box'));
   }
     
 
+
 }
+

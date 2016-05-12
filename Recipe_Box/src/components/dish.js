@@ -8,7 +8,7 @@ export default class Dish extends Component {
      render() {
         return (
         
-        <div>
+        <div id="box">
 
         <div className="dishes" id="Spaghetti" onClick={this.openIngredientBox} >
         Spaghetti
