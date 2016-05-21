@@ -1,24 +1,41 @@
 import React from 'react';
 import { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+
 
 export default class Dish extends Component {
-     
   
+  constructor(props) {
+    super(props);
+    this.state = { /* initial state */
+      dishes: props.dishes
+     };
+  }
 
-     render() {
-        return (
-        
-        <div id="box">
+   componentWillMount(){
+    alert("Componentwillmount");
+   }
+ 
+    componentDidMount(){
+      alert("ComponentDidmount");
+    }
+  
+    componentWillReceiveProps(next){
+      alert("will receive props")
+    }
+   
 
-        <div className="dishes" id="Spaghetti" onClick={this.openIngredientBox} >
-        Spaghetti
-        </div>
-        
-        <div className="dishes" id="Onion Pie" onClick={this.openIngredientBox} >
-        Onion Pie
-        </div>
-       </div>
-    );
+      render() {
+        alert("rendered dishes");
+
+        return(
+           <div id='box'> 
+           {this.state.dishes.map((dish) => <div className='dishes'
+            id={dish} onClick={this.openIngredientBox}>{dish}</div>)}
+           </div>
+
+      );
   }         
 
      openIngredientBox (e){
@@ -37,7 +54,7 @@ export default class Dish extends Component {
        else if(dishname==="Onion Pie") {
         document.getElementById("allingres").innerHTML = "<li>Onion</li><li>Pie Crust</li>";
        }
-       
+      
      }
 
      deleteDish(){

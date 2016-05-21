@@ -6,16 +6,18 @@ import IngreBox from './components/ingrebox';
 import Newrec from './components/newRec';
 
 const App = () => {
+  
+
   return (
   	<div>
   	
   	<IngreBox />
-   
     <div id="graybox">
-    < Dish />
-    <Button />
+      < Dish dishes={['Spaghetti', 'Onion Pie']} />
+      <Button />
     
     </div>
+   
      <Newrec />
     </div>
     

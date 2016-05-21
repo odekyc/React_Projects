@@ -20,9 +20,9 @@ body{
 #board{
 	position: relative;
 	display: inline-block;
-	height: 3000px;
+	height: 2000px;
 	width: 1000px;
-	margin-left: 215px;
+	margin-left: 210px;
 	background-color: white;
 	top: 130px;
 }

@@ -4,7 +4,6 @@ import Rows from "./components/rows";
 
 const App = () => {
   return (
-    
     <div id="board">
 
     <div id="title">
@@ -14,6 +13,7 @@ const App = () => {
      
      
     </div>
+  
    
     );
 }

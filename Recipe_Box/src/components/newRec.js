@@ -1,13 +1,19 @@
 import React from 'react';
 import { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+
 
 export default class Newrec extends Component {
      
-  
+ 
 
      render() {
+
+
         return (
         <div>
+      
          <div id="newrecpe">
     <form onSubmit={this.submitForm}>
     <br />
@@ -34,17 +40,25 @@ export default class Newrec extends Component {
   }         
 
   submitForm(){
+    document.getElementById("submit").addEventListener("click", function(){
 
+      $("Dish").attr("dishes","{['meow']}");
+    });
     var dishname=$('#dishname').val();
     alert(dishname);
     var ingredients=$('textarea').val();
+
     var res=ingredients.split(",");
-    var root = React.createElement('div', { className: 'dishes' });
-    root.textContent="hihihi";
-    ReactDOM.render(root, document.getElementById('box'));
+    
+    alert(dishname);
+
+
+  
   }
     
 
 
 }
+
+
 
