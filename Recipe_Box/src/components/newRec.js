@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 
 export default class Newrec extends Component {
      
- 
 
      render() {
 
@@ -29,6 +28,7 @@ export default class Newrec extends Component {
        <br />
 
        <textarea rows="4" cols="25">
+      
        </textarea>
        <br />
        <br />
@@ -40,21 +40,17 @@ export default class Newrec extends Component {
   }         
 
   submitForm(){
-    document.getElementById("submit").addEventListener("click", function(){
+  
 
-      $("Dish").attr("dishes","{['meow']}");
-    });
     var dishname=$('#dishname').val();
-    alert(dishname);
+  
     var ingredients=$('textarea').val();
 
     var res=ingredients.split(",");
+   
     
-    alert(dishname);
-
-
-  
   }
+
     
 
 
