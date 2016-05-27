@@ -7,3 +7,12 @@ export function addState(newstate){
 	};
 	
 }
+
+export function addIngre(newIngre){
+
+    return {
+      type: 'ADDINGRE',
+      payload: newIngre
+	};
+
+}

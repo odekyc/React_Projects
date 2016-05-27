@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 
 class Dish extends Component {
 
-     componentDidMount(){
-      alert("didmount");
-     }
-
+  
       render() {
        
         alert("rendered");
@@ -57,8 +54,8 @@ class Dish extends Component {
 function mapStateToProps(state){
      
      return{
-        mydishes: state.mydish
-
+        mydishes: state.mydish,
+        myingres: state.myingre
      };
   
 }

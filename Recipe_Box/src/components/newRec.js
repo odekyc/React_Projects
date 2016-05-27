@@ -3,6 +3,7 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { addState } from '../Actions/index';
+import { addIngre } from '../Actions/index';
 import { bindActionCreators } from 'redux';
 
 class Newrec extends Component {
@@ -68,10 +69,11 @@ class Newrec extends Component {
     alert(box_height);
 
     this.props.addState({dish: dishname});
+    this.props.addIngre({ingre: res});
 
    $('#newrecpe').css('visibility', 'hidden');
 
-   $('#graybox').css('height', box_height+70);
+   $('#graybox').css('height', box_height+65);
   
    
     
@@ -86,7 +88,8 @@ class Newrec extends Component {
 function mapStateToProps(state){
      
      return{
-        mydishes: state.mydish
+        mydishes: state.mydish,
+        myingres: state.myingre
 
      };
   
@@ -96,7 +99,7 @@ function mapDispatchToProps(dispatch){
 
 
 
-  return bindActionCreators({ addState: addState }, dispatch);
+  return bindActionCreators({ addState: addState, addIngre: addIngre }, dispatch);
 
 }
 
