@@ -1,11 +1,21 @@
 import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { addState } from '../Actions/index';
+import { bindActionCreators } from 'redux';
 
-
-
-export default class Newrec extends Component {
+class Newrec extends Component {
      
+     constructor(){
+      super();
+
+  
+ 
+      this.submitForm=this.submitForm.bind(this);
+     
+
+     }
 
      render() {
 
@@ -16,7 +26,7 @@ export default class Newrec extends Component {
          <div id="newrecpe">
     <form onSubmit={this.submitForm}>
     <br />
-         Dish name: <br />
+         Dish name: <br /> 
          <br />
        <input type="text" id="dishname"></input> <br />
        <br />
@@ -32,21 +42,37 @@ export default class Newrec extends Component {
        </textarea>
        <br />
        <br />
-        <input type="submit" id="submit"></input>
+        <input type="submit" id="submit" ></input>
        </form>
     </div>
     </div>
     );
-  }         
+  }     
 
-  submitForm(){
+
+
+  submitForm(event){
+
+
+    let dishname=$('#dishname').val();
   
+    let ingredients=$('textarea').val();
 
-    var dishname=$('#dishname').val();
+    let res=ingredients.split(",");
+    
+     
+    event.preventDefault();
+
+    let box_height=$('#graybox').height();
+
+    alert(box_height);
+
+    this.props.addState({dish: dishname});
+
+   $('#newrecpe').css('visibility', 'hidden');
+
+   $('#graybox').css('height', box_height+70);
   
-    var ingredients=$('textarea').val();
-
-    var res=ingredients.split(",");
    
     
   }
@@ -55,6 +81,26 @@ export default class Newrec extends Component {
 
 
 }
+
+
+function mapStateToProps(state){
+     
+     return{
+        mydishes: state.mydish
+
+     };
+  
+}
+
+function mapDispatchToProps(dispatch){
+
+
+
+  return bindActionCreators({ addState: addState }, dispatch);
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Newrec);
 
 
 

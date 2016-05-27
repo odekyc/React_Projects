@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 
 class Dish extends Component {
 
-
+     componentDidMount(){
+      alert("didmount");
+     }
 
       render() {
        
-         
+        alert("rendered");
 
       return(
            <div id='box'> 
