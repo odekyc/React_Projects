@@ -29,7 +29,7 @@ class Newrec extends Component {
     <br />
          Dish name: <br /> 
          <br />
-       <input type="text" id="dishname"></input> <br />
+       <input type="text" id="dishname"></input><br />
        <br />
        Ingredients:
        <br />
@@ -43,7 +43,7 @@ class Newrec extends Component {
        </textarea>
        <br />
        <br />
-        <input type="submit" id="submit" ></input>
+        <input type="submit" id="submit"></input>
        </form>
     </div>
     </div>
@@ -59,21 +59,27 @@ class Newrec extends Component {
   
     let ingredients=$('textarea').val();
 
-    let res=ingredients.split(",");
+
     
-     
+
+     let res=ingredients.split(',');
+  
+
     event.preventDefault();
 
     let box_height=$('#graybox').height();
 
     alert(box_height);
 
-    this.props.addState({dish: dishname});
-    this.props.addIngre({ingre: res});
+    
+
+    this.props.addState({dish: dishname, in:res});
+ 
+
 
    $('#newrecpe').css('visibility', 'hidden');
 
-   $('#graybox').css('height', box_height+65);
+   $('#graybox').css('height', box_height+66);
   
    
     

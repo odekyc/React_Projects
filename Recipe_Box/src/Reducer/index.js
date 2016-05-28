@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import DishReducer from './reducer_dish';
-import IngreReducer from './reducer_ingres';
+import ActiveReducer from './reducer_active';
 
 const rootReducer = combineReducers({
      mydish: DishReducer,
-     myingre: IngreReducer
+     activedish: ActiveReducer
 });
 
 export default rootReducer;

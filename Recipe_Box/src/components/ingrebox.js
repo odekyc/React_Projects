@@ -32,6 +32,7 @@ var Ingres=React.createClass({
        return(
          <div >
          <ul id="allingres">
+         
          </ul>
          </div>
         );

@@ -27,6 +27,11 @@ class Dish extends Component {
 
      openIngredientBox (e){
        
+        let ingrestr='';
+
+        let dishname1=$('#dishname').val();
+
+        alert(dishname1);
 
         $('#ingredientBox').css('visibility', 'visible');
 
@@ -36,11 +41,13 @@ class Dish extends Component {
        var dishname=current_dish;
 
        if(dishname==="Spaghetti"){
+         alert(this.props.myingres[0].in);
          document.getElementById("allingres").innerHTML = "<li>Noodles</li><li>Tomato Sauce</li><li>(Optional) Meatballs</li>";
        }
        else if(dishname==="Onion Pie") {
         document.getElementById("allingres").innerHTML = "<li>Onion</li><li>Pie Crust</li>";
        }
+    
       
      }
 
@@ -55,7 +62,7 @@ function mapStateToProps(state){
      
      return{
         mydishes: state.mydish,
-        myingres: state.myingre
+        myactivedish: state.activedish
      };
   
 }
