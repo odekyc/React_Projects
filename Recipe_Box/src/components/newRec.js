@@ -60,7 +60,8 @@ class Newrec extends Component {
     let ingredients=$('textarea').val();
 
     if (( dishname==='')&&(ingredients==='')){
-      alert("you didn't enter a valid selection.")
+      alert("you didn't enter a valid selection.");
+      event.preventDefault();
     }
     else{
 
