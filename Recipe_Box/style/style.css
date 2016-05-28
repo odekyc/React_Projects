@@ -24,7 +24,9 @@
     color: green;
     font-weight: bold;
     text-align: center;
-    padding-top: 12px;
+    padding-top: 13px;
+    top: -500px;
+    z-index: 1;
 
 }
 
@@ -33,7 +35,7 @@ button{
    height: 60px;
    width: 110px;
    background-color: blue;
-   top: 60px;
+   top: -400px;
 }
 
 

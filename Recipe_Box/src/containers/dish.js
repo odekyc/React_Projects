@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-
+import IngreBox from '../components/ingrebox';
 
 class Dish extends Component {
 
@@ -12,7 +12,9 @@ class Dish extends Component {
         alert("rendered");
 
       return(
+           
            <div id='box'> 
+           <IngreBox />
            {this.props.mydishes.map((curdish) => <div className='dishes'
             id={curdish.dish} onClick={this.openIngredientBox}>{curdish.dish}</div>)}
            </div>

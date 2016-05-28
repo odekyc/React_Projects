@@ -59,8 +59,10 @@ class Newrec extends Component {
   
     let ingredients=$('textarea').val();
 
-
-    
+    if (( dishname==='')&&(ingredients==='')){
+      alert("you didn't enter a valid selection.")
+    }
+    else{
 
      let res=ingredients.split(',');
   
@@ -81,7 +83,7 @@ class Newrec extends Component {
 
    $('#graybox').css('height', box_height+66);
   
-   
+   }
     
   }
 
