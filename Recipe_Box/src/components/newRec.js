@@ -97,7 +97,7 @@ function mapStateToProps(state){
      
      return{
         mydishes: state.mydish,
-        myingres: state.myingre
+       
 
      };
   

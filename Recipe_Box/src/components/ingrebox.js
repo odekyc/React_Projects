@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import { connect } from 'react-redux';
 
 
 
@@ -43,9 +43,13 @@ var Ingres=React.createClass({
 });
 
 
+class IngreBox extends Component {
 
-export default class IngreBox extends Component {
+     constructor(){
+      super();
 
+      this.deleteDish=this.deleteDish.bind(this);
+     }
 
      render() {
         return (
@@ -72,9 +76,25 @@ export default class IngreBox extends Component {
   }
 
   deleteDish(){
-
-
+    alert('delete dish');
+    let curdish=this.props.myactived;
+    alert(curdish.dish);
+    
   }
 }
+
+
+function mapStateToProps(state){
+     
+     return{
+        myactived: state.activedish,
+       
+     };
+  
+}
+
+
+export default connect(mapStateToProps)(IngreBox);
+
 
 
