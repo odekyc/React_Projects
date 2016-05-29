@@ -17,8 +17,9 @@ class Dish extends Component {
            
            {this.props.mydishes.map((curdish) => {
            return(
-            [<IngreBox />,
-            <div className='dishes' id={curdish.dish} onClick={this.openIngredientBox}>{curdish.dish}</div>
+            [
+            <div className='dishes' id={curdish.dish} onClick={ () => this.openIngredientBox (event, curdish) }>{curdish.dish}</div>,
+            <IngreBox />
            ]
            );
             })}
@@ -33,22 +34,18 @@ class Dish extends Component {
  
   }         
 
-     openIngredientBox (e){
+     openIngredientBox (e, mydish){
        
-        let ingrestr='';
-
-        let dishname1=$('#dishname').val();
-
-        alert(dishname1);
+      
 
         $('#ingredientBox').css('visibility', 'visible');
 
-        var current_dish=e.target.id;
+        var current_dish=mydish.dish;
        document.getElementById("recipeName").innerHTML = current_dish;
 
        var dishname=current_dish;
 
-  
+       document.getElementById("allingres").innerHTML=mydish.in;
     
       
      }
