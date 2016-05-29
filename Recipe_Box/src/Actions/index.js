@@ -8,3 +8,13 @@ export function addState(newstate){
 	
 }
 
+
+export function selectDish(thisdish){
+
+    alert("inside selectDish");
+
+	return{
+      type: 'DISH_SELECTED',
+      payload: thisdish
+	};
+}

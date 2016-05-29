@@ -3,48 +3,11 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 
-
-
-var Content=React.createClass({
-    render() {
-        return (
-
-        <div>
-        <div id="content">
-         <center><span id="recipeName"></span></center>
-         <Ingres />
-       </div>
-       </div>
-    );
-  }
-
-});
-
-
-
-var Ingres=React.createClass({
-     
- 
-    
-
-     render(){
-       
-
-       return(
-         <div >
-         <ul id="allingres">
-         
-         </ul>
-         </div>
-        );
-       
-     }
-
-});
-
-
-
 export default class IngreBox extends Component {
+
+      constructor(props){
+        super(props);
+      }
 
      render() {
         return (
@@ -53,8 +16,13 @@ export default class IngreBox extends Component {
         <div id="circle" onClick={this.hideIngreBox}>
   	    <span id="x"><center>X</center></span>
   	    </div>
-
-         <Content />
+         <div id="content">
+         <center><span id="recipeName"></span></center>
+         <ul id="allingres">
+          { this.props.ingredients }
+         </ul>
+       </div>
+         
   	    
   	    <div id="delete"><center>Delete</center></div>
   	    <div id="edit"><center>Edit</center></div>

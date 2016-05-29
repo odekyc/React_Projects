@@ -3,7 +3,6 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { addState } from '../Actions/index';
-import { addIngre } from '../Actions/index';
 import { bindActionCreators } from 'redux';
 
 class Newrec extends Component {
@@ -108,7 +107,7 @@ function mapDispatchToProps(dispatch){
 
 
 
-  return bindActionCreators({ addState: addState, addIngre: addIngre }, dispatch);
+  return bindActionCreators({ addState: addState}, dispatch);
 
 }
 
