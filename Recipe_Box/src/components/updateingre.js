@@ -12,7 +12,11 @@ export default class Editingre extends Component {
         </center>
 
         <form >
-         
+         <div id="editingreX" onClick={ this.hideEditBox}>
+         <center>
+         <p> X </p>
+         </center>
+         </div>
          <textarea rows="7" cols="11" id="newingredients">
          </textarea>
 
@@ -21,6 +25,10 @@ export default class Editingre extends Component {
         </div>
        </div>
     );
+  }
+
+  hideEditBox(){
+     $('#editbox').css('visibility', 'hidden');
   }
 
 
