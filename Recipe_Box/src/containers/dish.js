@@ -9,16 +9,22 @@ class Dish extends Component {
   
       render() {
        
-        alert("rendered");
+        alert("rendered")
 
       return(
            
            <div id='box'> 
-           <IngreBox />
-           {this.props.mydishes.map((curdish) => <div className='dishes'
-            id={curdish.dish} onClick={this.openIngredientBox}>{curdish.dish}</div>)}
-           </div>
+           
+           {this.props.mydishes.map((curdish) => {
+           return(
+            [<IngreBox />,
+            <div className='dishes' id={curdish.dish} onClick={this.openIngredientBox}>{curdish.dish}</div>
+           ]
+           );
+            })}
 
+           </div>
+          
       );
 
           
@@ -42,13 +48,7 @@ class Dish extends Component {
 
        var dishname=current_dish;
 
-       if(dishname==="Spaghetti"){
-         alert(this.props.myingres[0].in);
-         document.getElementById("allingres").innerHTML = "<li>Noodles</li><li>Tomato Sauce</li><li>(Optional) Meatballs</li>";
-       }
-       else if(dishname==="Onion Pie") {
-        document.getElementById("allingres").innerHTML = "<li>Onion</li><li>Pie Crust</li>";
-       }
+  
     
       
      }

@@ -24,7 +24,7 @@ var Content=React.createClass({
 
 var Ingres=React.createClass({
      
-     
+ 
     
 
      render(){
