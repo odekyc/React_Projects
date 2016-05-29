@@ -46,7 +46,7 @@ var Ingres=React.createClass({
 
 export default class IngreBox extends Component {
 
-     
+
      render() {
         return (
         <div id="ingredientBox">
@@ -57,7 +57,7 @@ export default class IngreBox extends Component {
 
          <Content />
   	    
-  	    <div id="delete"><center>Delete</center></div>
+  	    <div id="delete" onClick={this.deleteDish}><center>Delete</center></div>
   	    <div id="edit"><center>Edit</center></div>
   	    </div>
     );
@@ -71,6 +71,10 @@ export default class IngreBox extends Component {
   	
   }
 
+  deleteDish(){
+
+
+  }
 }
 
 

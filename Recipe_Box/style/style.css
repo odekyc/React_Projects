@@ -58,6 +58,7 @@ button{
 #content{
 	position: relative;
 	margin: 0 auto;
+	padding: 0 auto;
 	height: 250px;
 	width: 480px;
 	border: 5px solid grey;

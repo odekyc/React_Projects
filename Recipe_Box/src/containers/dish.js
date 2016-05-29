@@ -3,9 +3,17 @@ import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import IngreBox from '../components/ingrebox';
+import { selectDish } from '../Actions/index';
+import { bindActionCreators } from 'redux';
 
 class Dish extends Component {
 
+      constructor(){
+       super();
+
+       this.openIngredientBox=this.openIngredientBox.bind(this);
+
+      }
   
       render() {
        
@@ -18,7 +26,7 @@ class Dish extends Component {
            {this.props.mydishes.map((curdish) => {
            return(
             [
-            <div className='dishes' id={curdish.dish} onClick={ () => this.openIngredientBox (event, curdish) }>{curdish.dish}</div>,
+            <div className='dishes' id={curdish.dish} onClick={ () => this.openIngredientBox (curdish) }>{curdish.dish}</div>,
             <IngreBox />
            ]
            );
@@ -34,7 +42,7 @@ class Dish extends Component {
  
   }         
 
-     openIngredientBox (e, mydish){
+     openIngredientBox ( mydish){
        
       
 
@@ -46,14 +54,14 @@ class Dish extends Component {
        var dishname=current_dish;
 
        document.getElementById("allingres").innerHTML=mydish.in;
+       
+       this.props.selectDish(mydish);
+      
     
       
      }
 
-     deleteDish(){
-        var dish_delete=document.getElementById(current_dish);
 
-     }
 
 }
 
@@ -61,9 +69,17 @@ function mapStateToProps(state){
      
      return{
         mydishes: state.mydish,
-        myactivedish: state.activedish
+       
      };
   
 }
 
-export default connect(mapStateToProps)(Dish);
+function mapDispatchToProps(dispatch){
+
+
+
+  return bindActionCreators({ selectDish: selectDish}, dispatch);
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dish);
