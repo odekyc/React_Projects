@@ -12,9 +12,9 @@ export default class App extends Component {
     <div>
   	
   	
-    <div id="graybox">
+    <div id="graybox" >
       <Dish />
-      <Button />
+      <Button/>
     
     </div>
    
@@ -22,4 +22,6 @@ export default class App extends Component {
     </div>
 	);
 	}
+
+
 }

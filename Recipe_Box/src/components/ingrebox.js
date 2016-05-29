@@ -77,9 +77,9 @@ class IngreBox extends Component {
   }
 
   deleteDish(){
-    alert('delete dish');
+   
     let curdish=this.props.myactived;
-    alert("curdish"+curdish.dish);
+   
 
     let grayboxheight=$('#graybox').height();
      

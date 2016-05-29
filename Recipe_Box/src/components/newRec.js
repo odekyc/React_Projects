@@ -13,22 +13,31 @@ class Newrec extends Component {
   
  
       this.submitForm=this.submitForm.bind(this);
+      this.hide=this.hide.bind(this);
      
-
      }
 
-     render() {
+   
 
+
+     render() {
+        alert("rec box rendered");
 
         return (
         <div>
       
          <div id="newrecpe">
+        
     <form onSubmit={this.submitForm}>
+     <div id="addingreX" onClick={ this.hide}>
+         <center>
+         <p> X </p>
+         </center>
+         </div>
     <br />
          Dish name: <br /> 
          <br />
-       <input type="text" id="dishname"></input><br />
+       <input type="text" id="dishname" > </input><br />
        <br />
        Ingredients:
        <br />
@@ -49,7 +58,11 @@ class Newrec extends Component {
     );
   }     
 
+     hide(){
 
+         $('#newrecpe').css('visibility', 'hidden');
+      }
+ 
 
   submitForm(event){
 
@@ -74,10 +87,6 @@ class Newrec extends Component {
 
     let box_height=$('#graybox').height();
 
-    alert(box_height);
-
-    
-
     this.props.addState({dish: dishname, in:res});
  
 
@@ -99,8 +108,7 @@ class Newrec extends Component {
 function mapStateToProps(state){
      
      return{
-        mydishes: state.mydish,
-       
+        mydishes: state.mydish
 
      };
   

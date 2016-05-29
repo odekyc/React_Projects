@@ -22,7 +22,6 @@ export function selectDish(thisdish){
 
 export function deleteState(thisdish){
 
-    alert("inside deleteState");
 
 	return{
       type: 'DISH_TO_DELETE',
