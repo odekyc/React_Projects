@@ -13,8 +13,10 @@ export default class Editingre extends Component {
 
         <form >
          
-         <textarea rows="6" cols="10" id="newingredients">
+         <textarea rows="7" cols="11" id="newingredients">
          </textarea>
+
+         <input type="submit" id="submitnewingre"></input>
         </form>
         </div>
        </div>

@@ -176,7 +176,7 @@ li{
 	position: absolute;
 	border:  2px solid black;
 	border-radius: 10px;
-	height: 300px;
+	height: 400px;
 	width: 300px;
 	left: 350px;
 	top: 100px;
@@ -185,14 +185,21 @@ li{
 	font-size: 200%;
 	font-weight: bolder;
 	padding-top: 10px;
+	visibility: hidden;
 }
 
 #newingredients{
 	position: relative;
 	top: 10px;
 	font-size: 70%;
+	left: -3px;
 }
 form{
     position: relative;
     left: 60px;
+}
+
+#submitnewingre{
+    position: relative;
+    top: 18px;
 }

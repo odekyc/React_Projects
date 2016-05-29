@@ -64,7 +64,7 @@ class IngreBox extends Component {
          <Content />
   	    
   	    <div id="delete" onClick={this.deleteDish}><center>Delete</center></div>
-  	    <div id="edit"><center>Edit</center></div>
+  	    <div id="edit" onClick={this.openEditBox}><center>Edit</center></div>
 
   	    </div>
 
@@ -79,6 +79,11 @@ class IngreBox extends Component {
   	$('#ingredientBox').css('visibility', 'hidden');
   	
   	
+  }
+
+  openEditBox(){
+    alert("editbox opened");
+    $('#editbox').css('visibility', 'visible');
   }
 
   deleteDish(){
