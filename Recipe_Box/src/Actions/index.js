@@ -28,3 +28,11 @@ export function deleteState(thisdish){
       payload: thisdish
 	};
 }
+
+export function updateState(newState){
+
+	return{
+       type: 'UPDATED_STATE',
+       payload: newState
+	};
+}

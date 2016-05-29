@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { deleteState } from '../Actions/index';
 import { bindActionCreators } from 'redux';
-
+import Editingre from './updateingre';
 
 var Content=React.createClass({
     render() {
@@ -54,6 +54,7 @@ class IngreBox extends Component {
 
      render() {
         return (
+          <div>
         <div id="ingredientBox">
   	    <span id="ingre"><center>Ingredients</center></span>
         <div id="circle" onClick={this.hideIngreBox}>
@@ -64,7 +65,11 @@ class IngreBox extends Component {
   	    
   	    <div id="delete" onClick={this.deleteDish}><center>Delete</center></div>
   	    <div id="edit"><center>Edit</center></div>
+
   	    </div>
+
+        <Editingre />
+        </ div>
     );
   }
 
