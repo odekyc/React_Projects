@@ -49,7 +49,7 @@ class Dish extends Component {
         $('#ingredientBox').css('visibility', 'visible');
 
         var current_dish=mydish.dish;
-       document.getElementById("recipeName").innerHTML = current_dish;
+       document.getElementById("recipeName").innerHTML = current_dish.replace(/_/gi, ' ');
 
        var dishname=current_dish;
 
