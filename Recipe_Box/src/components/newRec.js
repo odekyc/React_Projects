@@ -56,6 +56,7 @@ class Newrec extends Component {
 
     let dishname=$('#dishname').val();
   
+
     let ingredients=$('textarea').val();
 
     if (( dishname==='')||(ingredients==='')){
@@ -63,6 +64,8 @@ class Newrec extends Component {
       event.preventDefault();
     }
     else{
+
+      dishname=dishname.replace(/ /g, "_");
 
      let res=ingredients.split(',');
   

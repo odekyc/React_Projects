@@ -2,7 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-
+import { deleteState } from '../Actions/index';
+import { bindActionCreators } from 'redux';
 
 
 var Content=React.createClass({
@@ -78,8 +79,16 @@ class IngreBox extends Component {
   deleteDish(){
     alert('delete dish');
     let curdish=this.props.myactived;
-    alert(curdish.dish);
-    
+    alert("curdish"+curdish.dish);
+
+    let grayboxheight=$('#graybox').height();
+     
+
+    this.props.deleteState(curdish);
+
+    $('#graybox').css('height', grayboxheight-57);
+
+    $('#ingredientBox').css('visibility', 'hidden');
   }
 }
 
@@ -87,14 +96,24 @@ class IngreBox extends Component {
 function mapStateToProps(state){
      
      return{
+        mydishes: state.mydish,
         myactived: state.activedish,
        
      };
   
 }
 
+function mapDispatchToProps(dispatch){
 
-export default connect(mapStateToProps)(IngreBox);
+
+
+  return bindActionCreators({ deleteState: deleteState}, dispatch);
+
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngreBox);
 
 
 

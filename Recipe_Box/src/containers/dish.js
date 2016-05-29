@@ -17,7 +17,7 @@ class Dish extends Component {
   
       render() {
        
-        alert("rendered")
+        alert(" dish rendered")
 
       return(
            
@@ -26,7 +26,7 @@ class Dish extends Component {
            {this.props.mydishes.map((curdish) => {
            return(
             [
-            <div className='dishes' id={curdish.dish} onClick={ () => this.openIngredientBox (curdish) }>{curdish.dish}</div>,
+            <div className='dishes' id={curdish.dish} onClick={ () => this.openIngredientBox (curdish) }>{curdish.dish.replace(/_/g, " ")}</div>,
             <IngreBox />
            ]
            );
@@ -56,7 +56,7 @@ class Dish extends Component {
        document.getElementById("allingres").innerHTML=mydish.in;
        
        this.props.selectDish(mydish);
-      
+       
     
       
      }
