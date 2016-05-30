@@ -32,7 +32,14 @@ export function deleteState(thisdish){
 export function updateState(newState){
 
 	return{
-       type: 'UPDATED_STATE',
+       type: 'UPDATE_STATE',
        payload: newState
+	};
+}
+
+export function getSelectDish(){
+
+	return{
+      type: 'GETSELECTDISH'
 	};
 }

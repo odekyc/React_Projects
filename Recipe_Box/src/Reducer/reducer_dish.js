@@ -13,6 +13,19 @@ export default function (state=[{dish: 'Spaghetti',in:['Noodles', 'Tomato Sauce'
 
        return state.slice(0, index).concat(state.slice(index+1));
 
+    case 'UPDATE_STATE':
+        var dishname=action.payload.dish;
+        var index=null;
+        var i;
+        for(i=0; i<state.length; i++ ){
+        	if(state[i].dish===dishname){
+        		index=i;
+        		state[i].in=action.payload.in;
+        	}
+        }
+        alert("index"+index);
+        return state;
+
     default:
     return state;
    }

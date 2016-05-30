@@ -49,7 +49,9 @@ class IngreBox extends Component {
      constructor(){
       super();
 
+
       this.deleteDish=this.deleteDish.bind(this);
+      this.openEditBox=this.openEditBox.bind(this);
      }
 
      render() {
@@ -81,14 +83,19 @@ class IngreBox extends Component {
   	
   }
 
-  openEditBox(){
+  openEditBox(){ 
     alert("editbox opened");
+
+
+ 
+
     $('#editbox').css('visibility', 'visible');
+
   }
 
   deleteDish(){
    
-    let curdish=this.props.myactived;
+    let curdish=this.props.myactived[0];
    
 
     let grayboxheight=$('#graybox').height();

@@ -46,7 +46,7 @@ class Newrec extends Component {
        <br />
        <br />
 
-       <textarea rows="4" cols="25">
+       <textarea id="addnewtextA" rows="4" cols="25">
       
        </textarea>
        <br />
@@ -65,12 +65,17 @@ class Newrec extends Component {
  
 
   submitForm(event){
-
+    
+    alert("in addnewdish submit form");
 
     let dishname=$('#dishname').val();
   
+    alert("dishname "+dishname);
 
-    let ingredients=$('textarea').val();
+    let ingredients=$('#addnewtextA').val();
+
+    alert("ingres "+ingredients);
+
 
     if (( dishname==='')||(ingredients==='')){
       alert("you didn't enter a valid selection.");
