@@ -12,10 +12,10 @@
 html{
 	background-color: #b3daff;
 	  background: #b3daff; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, #b3daff , yellow); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #b3daff, yellow); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #b3daff, yellow); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #b3daff , yellow); /* Standard syntax */
+  background: -webkit-linear-gradient(left, #b3daff , #ffffb3); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #b3daff, #ffffb3); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #b3daff, #ffffb3); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #b3daff , #ffffb3); /* Standard syntax */
 }
 
 body{
@@ -121,6 +121,16 @@ button{
      position: absolute;
      top: 28px;
      left: 530px;
+     color: white;
+     font-size: 70%;
+      border-radius: 15px;
+       width: 130px;
+}
+
+#bottom4{
+     position: absolute;
+     top: 83px;
+     left: 210px;
      color: white;
      font-size: 70%;
       border-radius: 15px;
