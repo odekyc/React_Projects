@@ -137,6 +137,27 @@ button{
        width: 130px;
 }
 
+#bottom5{
+     position: absolute;
+     top: 83px;
+     left: 370px;
+     color: white;
+     font-size: 70%;
+     border-radius: 15px;
+     width: 130px;
+}
+
+#bottom6{
+     position: absolute;
+     top: 83px;
+     left: 530px;
+     color: white;
+     font-size: 70%;
+     border-radius: 15px;
+     width: 130px;
+}
+
+
 #board_sz{
   position:absolute;
   top: 25px;

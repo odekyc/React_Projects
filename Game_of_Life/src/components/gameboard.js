@@ -37,6 +37,8 @@ export default class Gameboard extends Component {
     <button id="bottom2">Size: 70X50</button>
     <button id="bottom3">Size:100X80</button>
     <button id="bottom4">SLOW</button>
+    <button id="bottom5">MEDIUM</button>
+    <button id="bottom6">FAST</button>
     </div>
     </div>
     </div>
