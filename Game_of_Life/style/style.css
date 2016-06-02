@@ -2,10 +2,10 @@
     position: absolute;
     margin: 0 auto;
     top: 70px;
-    left: 250px;
+    left: 225px;
 	  background-color: #bfff00;
 	  height: 700px;
-	 width: 900px;
+	 width: 1000px;
    border-radius: 12px;
 }
 
@@ -28,20 +28,64 @@ body{
   top: 750px;
   background-color: #bfff00;
   height: 140px;
-  width: 500px;
-  left: 450px;
+  width: 700px;
+  left: 370px;
   border-radius: 12px;
 
 }
 
-#upperpad{
+#top1{
+     
+     color: white;
+     font-size: 70%;
+      border-radius: 15px;
 
+}
+
+
+#top2{
+     
+     color: white;
+     font-size: 70%;
+     margin-left: 20px;
+      border-radius: 15px;
+}
+
+#top3{
+     
+     color: white;
+     font-size: 70%;
+     margin-left: 20px;
+      border-radius: 15px;
+}
+
+button{
+   width: 100px;
+   margin-left: 70px;
+  
+   background-color: purple;
+}
+
+#upperbut{
+  position:absolute;
+  left: 50px;
+  top: 7px;
+}
+
+#gen_count{
+     position: absolute;
+     left: 420px;
+     top: 11px;
+}
+
+#upperpad{
+  
   position:absolute;
   top: 10px;
   background-color: #bfff00;
   height: 90px;
-  width: 500px;
-  left: 450px;
+  width: 700px;
+  left: 370px;
   border-radius: 12px;
-
+  font-size: 180%;
 }
