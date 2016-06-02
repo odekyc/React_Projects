@@ -1,0 +1,47 @@
+#gameboard{
+    position: absolute;
+    margin: 0 auto;
+    top: 70px;
+    left: 250px;
+	  background-color: #bfff00;
+	  height: 700px;
+	 width: 900px;
+   border-radius: 12px;
+}
+
+html{
+	background-color: #b3daff;
+	  background: #b3daff; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #b3daff , yellow); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #b3daff, yellow); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #b3daff, yellow); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #b3daff , yellow); /* Standard syntax */
+}
+
+body{
+	display: inline;
+}
+
+#lowerpad{
+
+  position:absolute;
+  top: 750px;
+  background-color: #bfff00;
+  height: 140px;
+  width: 500px;
+  left: 450px;
+  border-radius: 12px;
+
+}
+
+#upperpad{
+
+  position:absolute;
+  top: 10px;
+  background-color: #bfff00;
+  height: 90px;
+  width: 500px;
+  left: 450px;
+  border-radius: 12px;
+
+}
