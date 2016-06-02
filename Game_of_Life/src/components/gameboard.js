@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-
+import Grid from './grid';
 
 
 export default class Gameboard extends Component {
@@ -25,7 +25,7 @@ export default class Gameboard extends Component {
     <p id="gen_count">Generation:</p>
     </div>
     <div id="gameboard" >
-      
+      <Grid />
     </div>
     <div id="lowerpad">
     <div>

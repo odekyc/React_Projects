@@ -9,6 +9,16 @@
    border-radius: 12px;
 }
 
+#grid{
+  position: absolute;
+  width: 940px;
+  height: 640px;
+  background-color: #9999ff;
+  top: 30px;
+  left: 30px;
+  color: #ffff66;
+}
+
 html{
 	background-color: #b3daff;
 	  background: #b3daff; /* For browsers that do not support gradients */
