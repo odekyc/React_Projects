@@ -31,6 +31,7 @@ body{
   width: 700px;
   left: 370px;
   border-radius: 12px;
+  font-size: 180%;
 
 }
 
@@ -88,4 +89,38 @@ button{
   left: 370px;
   border-radius: 12px;
   font-size: 180%;
+}
+
+#sim_spd{
+  position:absolute;
+  top: 80px;
+  left: 50px;
+}
+
+#bottom1{
+     position: absolute;
+     top: 28px;
+     left: 210px;
+     color: white;
+     font-size: 70%;
+      border-radius: 15px;
+       width: 130px;
+}
+
+#bottom2{
+     position: absolute;
+     top: 28px;
+     left: 370px;
+     color: white;
+     font-size: 70%;
+      border-radius: 15px;
+       width: 130px;
+}
+
+#board_sz{
+  position:absolute;
+  top: 25px;
+  left: 50px;
+  
+
 }

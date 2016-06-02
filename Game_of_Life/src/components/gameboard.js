@@ -28,6 +28,15 @@ export default class Gameboard extends Component {
       
     </div>
     <div id="lowerpad">
+    <div>
+    <p id="board_sz">Board Size:</p>
+    <br />
+    <p id="sim_spd"> Sim Speed</p>
+    <div id="lowerbuts">
+    <button id="bottom1">Size: 50X30</button>
+    <button id="bottom2">Size: 70X50</button>
+    </div>
+    </div>
     </div>
     </div>
 	);
