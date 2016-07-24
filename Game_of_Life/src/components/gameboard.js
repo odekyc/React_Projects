@@ -34,7 +34,6 @@ export default class Gameboard extends Component {
     <p id="sim_spd"> Sim Speed</p>
     <div id="lowerbuts">
     <button id="bottom1">Size: 50X30</button>
-    <button id="bottom2">Size: 70X50</button>
     <button id="bottom3">Size:100X80</button>
     <button id="bottom4">SLOW</button>
     <button id="bottom5">MEDIUM</button>
