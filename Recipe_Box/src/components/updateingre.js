@@ -45,7 +45,7 @@ class Editingre extends Component {
 
   submitEditBox(event){
       
-      alert("submiteditbox");
+     
       
     
       let newingres=$('#newingredients').val();
@@ -54,17 +54,17 @@ class Editingre extends Component {
       let curdish=this.props.myactivedish[0];
       let dishname=curdish.dish;
        
-      alert("editbox dishname"+ curdish.dish);
+     
 
       newingres=newingres.split(',');
 
-      alert(typeof newingres);
+      
       
       this.props.updateState({dish: dishname, in: newingres})
       
       let hi=this.props.mydishes[0];
 
-      alert(hi.in);
+      
 
       $('#editbox').css('visibility', 'hidden');
       $('#ingredientBox').css('visibility', 'hidden');

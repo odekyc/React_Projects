@@ -21,7 +21,7 @@ class Newrec extends Component {
 
 
      render() {
-        alert("rec box rendered");
+        
 
         return (
         <div>
@@ -66,19 +66,17 @@ class Newrec extends Component {
 
   submitForm(event){
     
-    alert("in addnewdish submit form");
+  
 
     let dishname=$('#dishname').val();
   
-    alert("dishname "+dishname);
+   
 
     let ingredients=$('#addnewtextA').val();
 
-    alert("ingres "+ingredients);
-
 
     if (( dishname==='')||(ingredients==='')){
-      alert("you didn't enter a valid selection.");
+     
       event.preventDefault();
     }
     else{

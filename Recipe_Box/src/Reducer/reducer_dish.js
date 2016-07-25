@@ -23,7 +23,7 @@ export default function (state=[{dish: 'Spaghetti',in:['Noodles', 'Tomato Sauce'
         		state[i].in=action.payload.in;
         	}
         }
-        alert("index"+index);
+       
         return state;
 
     default:

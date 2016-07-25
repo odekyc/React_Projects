@@ -84,7 +84,7 @@ class IngreBox extends Component {
   }
 
   openEditBox(){ 
-    alert("editbox opened");
+   
 
 
  

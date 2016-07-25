@@ -17,7 +17,7 @@ class Dish extends Component {
   
       render() {
        
-        alert(" dish rendered")
+    
 
       return(
            
