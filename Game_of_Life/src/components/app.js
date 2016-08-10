@@ -1,12 +1,29 @@
 import React from 'react';
 import { Component } from 'react';
 
+// action functions
+
+function IncreCounter(){
+
+  return{
+    type: 'increcounter'
+
+  };
+}
+
+
+//global functions that make empty grid, random grid, advance grid
+
 //dumb components, not involved in dispatching actions and has nothing to do with 
 //updating states in redux
 const Button=({id, title, handleClick})=>(
 
     <button id={id} onClick={handleClick}>{title}</button>      
 
+);
+
+const Cell=({newBorn, isAlive, handleClick})=>(
+     <div id='cell'></div>
 );
 
 const Counter=({genCount})=>(
@@ -22,9 +39,7 @@ class Grid extends Component {
 
 		return (
         <div id="grid">
-         <div id='span'>
-         </div>
-         
+         <Cell />
          </div>
 	);
 	}
