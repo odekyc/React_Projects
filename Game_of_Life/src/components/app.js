@@ -142,11 +142,13 @@ class Gameboard_ extends Component {
 	render(){
 
 		return (
-    
+         <center>
          <div id="gameboard" >
-
+           
            <Grid />
+
           </div>
+          </center>
 	);
 	}
 

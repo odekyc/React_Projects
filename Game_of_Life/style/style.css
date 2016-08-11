@@ -2,7 +2,6 @@
     position: absolute;
     margin: 0 auto;
     top: 70px;
-    left: 225px;
 	  background-color: #9999ff;
 	  height: 840px;
 	 width: 1110px;
@@ -14,9 +13,9 @@
 #grid{
   position: absolute;
   background-color: white;
+  color: #ffff66;
   top: 30px;
   left: 30px;
-  color: #ffff66;
   vertical-align: middle;
 }
 
