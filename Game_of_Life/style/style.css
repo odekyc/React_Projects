@@ -4,8 +4,8 @@
     top: 70px;
     left: 225px;
 	  background-color: #9999ff;
-	  height: 700px;
-	 width: 1000px;
+	  height: 840px;
+	 width: 1110px;
    border-radius: 12px;
 }
 
@@ -34,7 +34,7 @@ body{
 
   position:absolute;
   background-color: yellow;
-  top: 741px;
+  top: 880px;
   height: 140px;
   width: 700px;
   left: 370px;
@@ -81,8 +81,8 @@ table, th, td{
 }
 
 .cell{
-  height: 17px;
-  width: 17px;
+  height: 15px;
+  width: 15px;
   
   background-color: #bfff80;
   float: left;

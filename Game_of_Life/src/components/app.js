@@ -113,7 +113,7 @@ const Counter=({genCount})=>(
 class Grid extends Component {
 
 	render(){
-    let newEmptyGrid=EmptyGrid(20,55);
+    let newEmptyGrid=EmptyGrid(50,70);
     var rows=newEmptyGrid.map(function(row, i){
         var entry=row.map(function(element, i){
           return(
