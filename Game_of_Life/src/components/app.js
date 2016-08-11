@@ -100,7 +100,7 @@ const Button=({id, title, handleClick})=>(
 );
 
 const Cell=({newBorn, isAlive, handleClick})=>(
-     <div className='cell'></div>
+     <td className='cell'></td>
 );
 
 const Counter=({genCount})=>(
@@ -113,125 +113,24 @@ const Counter=({genCount})=>(
 class Grid extends Component {
 
 	render(){
-    let newEmptyGrid=EmptyGrid();
+    let newEmptyGrid=EmptyGrid(20,55);
+    var rows=newEmptyGrid.map(function(row, i){
+        var entry=row.map(function(element, i){
+          return(
+            <Cell />
+           );
+        });
+        return(
+          <tr>{entry}</tr>
+        );
+    })
 
 		return (
-        <div id="grid">
-          <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-               <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-           <Cell/>
-          <Cell/>
-          <Cell/>
-         </div>
+        <table id="grid">
+         <tbody>
+            {rows}
+         </tbody>
+         </table>
 	);
 	}
 
