@@ -6,6 +6,8 @@ const GridHeight=50;
 
 const GridWidth=70;
 
+const intervalTime=100;
+
 // action functions
 
 function IncreCounter(){
@@ -16,6 +18,26 @@ function IncreCounter(){
   };
 }
 
+function ClearGrid(){
+  return{
+
+    type: 'cleargrid'
+  };
+}
+
+function initGrid(){
+  return{
+    type: 'randomgrid'
+  };
+}
+
+function getNextGrid(){
+  return{
+    type: 'nextgrid'
+  };
+}
+
+
 // reducers
 
 const genCountReducer=(state=0, action)=>{
@@ -25,11 +47,31 @@ const genCountReducer=(state=0, action)=>{
 
       return state+1;
 
+    case 'cleargrid':
+      state=0;
+      return state;
+
     default:
       return state;
    }
 }
 
+
+const makeGridReducer=(state=[], action) =>{
+
+  switch(action.type){
+    case 'cleargrid':
+      state=EmptyGrid(GridHeight, GridWidth);
+      return state;
+
+    case 'randomgrid':
+      state=RandomGrid(GridHeight, GridWidth);
+      return state;
+
+    default:
+      return state;
+  }
+}
 
 
 //global functions that make empty grid, random grid, advance grid
@@ -76,7 +118,21 @@ const NextGrid=(currentGrid)=>{
   let grid=[];
   let aliveNeigtbors;
   let neighborCounts=function(x,y){
+      var neighborAlive=0;
+      var Xminus1=x-1;
+      var Yminus1=y-1;
+      var Xplus1=x+1;
+      var Yplus1=y+1;
       
+
+      if(Xminus1<0){
+        Xminus1=GridWidth-1;
+      }
+
+      if(Yminus1<0){
+        Yminus1=GridHeight-1;
+      }
+
 
   };
 
