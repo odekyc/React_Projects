@@ -1,6 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
 
+
+const GridHeight=50;
+
+const GridWidth=70;
+
 // action functions
 
 function IncreCounter(){
@@ -11,8 +16,80 @@ function IncreCounter(){
   };
 }
 
+// reducers
+
+const genCountReducer=(state=0, action)=>{
+
+  switch(action.type){
+    case 'increcounter':
+
+      return state+1;
+
+    default:
+      return state;
+   }
+}
+
+
 
 //global functions that make empty grid, random grid, advance grid
+
+const EmptyGrid=(height, width)=>{
+  let grid=[];
+  for(var i=0; i<height; i++){
+    var row=[];
+    for(var j=0; j<width; j++){
+      row.push({
+        isAlive: 0,
+        newBorn: 0
+      });
+    }
+    grid.push(row);
+  }
+  return grid;
+};
+
+
+const RandomGrid=(height, width)=>{
+  let count=0;
+  let grid=[];
+  for(var i=0; i<height; i++){
+    var row=[];
+    for(var j=0; j<width; j++){
+      let randomStatus= Math.random() >0.80;
+      if(randomStatus){
+       count++;
+      }
+      row.push({
+        isAlive: randomStatus,
+        newBorn: 0
+      });
+    }
+    grid.push(row);
+  }
+  return grid;
+}
+
+
+
+const NextGrid=(currentGrid)=>{
+  let grid=[];
+  let aliveNeigtbors;
+  let neighborCounts=function(x,y){
+      
+
+  };
+
+  for(var i=0; i<currentGrid.length; i++){
+     var row=[];
+     for(var j=0; j<currentGrid[0].length; j++){
+        aliveNeigtbors=neighborCounts(i,j);
+     }
+  }
+
+}
+
+
 
 //dumb components, not involved in dispatching actions and has nothing to do with 
 //updating states in redux
@@ -23,7 +100,7 @@ const Button=({id, title, handleClick})=>(
 );
 
 const Cell=({newBorn, isAlive, handleClick})=>(
-     <div id='cell'></div>
+     <div className='cell'></div>
 );
 
 const Counter=({genCount})=>(
@@ -36,10 +113,124 @@ const Counter=({genCount})=>(
 class Grid extends Component {
 
 	render(){
+    let newEmptyGrid=EmptyGrid();
 
 		return (
         <div id="grid">
-         <Cell />
+          <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+               <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
          </div>
 	);
 	}
