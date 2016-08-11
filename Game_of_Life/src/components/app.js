@@ -25,7 +25,7 @@ function ClearGrid(){
   };
 }
 
-function initGrid(){
+function initRandGrid(){
   return{
     type: 'randomgrid'
   };
@@ -61,12 +61,15 @@ const makeGridReducer=(state=[], action) =>{
 
   switch(action.type){
     case 'cleargrid':
-      state=EmptyGrid(GridHeight, GridWidth);
-      return state;
+      return EmptyGrid(GridHeight, GridWidth);
 
     case 'randomgrid':
-      state=RandomGrid(GridHeight, GridWidth);
-      return state;
+      
+      return RandomGrid(GridHeight, GridWidth);
+
+    case 'nextgrid':
+
+      return NextGrid(state);
 
     default:
       return state;
@@ -103,7 +106,7 @@ const RandomGrid=(height, width)=>{
        count++;
       }
       row.push({
-        isAlive: randomStatus,
+        isAlive: Number(randomStatus),
         newBorn: 0
       });
     }
@@ -115,10 +118,10 @@ const RandomGrid=(height, width)=>{
 
 
 const NextGrid=(currentGrid)=>{
-  let grid=[];
-  let aliveNeigtbors;
+  let newGrid=[];
+  let aliveNeighbors;
   let neighborCounts=function(x,y){
-      var neighborAlive=0;
+      var neighborsAlive=0;
       var Xminus1=x-1;
       var Yminus1=y-1;
       var Xplus1=x+1;
@@ -133,16 +136,65 @@ const NextGrid=(currentGrid)=>{
         Yminus1=GridHeight-1;
       }
 
+      if(Xplus1===GridWidth){
+        Xplus1=0;
+      }
+     
+      if(Yplus1===GridHeight){
+        Yplus1=0;
+      }
+      
+      neighborsAlive+=currentGrid[Yminus1][Xminus1].isAlive;
+      neighborsAlive+=currentGrid[Yminus1][x].isAlive;
+      neighborsAlive+=currentGrid[Yminus1][Xplus1].isAlive;
+      neighborsAlive+=currentGrid[y][Xminus1].isAlive;
+      neighborsAlive+=currentGrid[y][Xplus1].isAlive;
+      neighborsAlive+=currentGrid[Yplus1][Xminus1].isAlive;
+      neighborsAlive+=currentGrid[Yplus1][x].isAlive;
+      neighborsAlive+=currentGrid[Yplus1][Xplus1].isAlive;
 
+
+    return neighborsAlive;
+     
   };
 
   for(var i=0; i<currentGrid.length; i++){
      var row=[];
      for(var j=0; j<currentGrid[0].length; j++){
-        aliveNeigtbors=neighborCounts(i,j);
+        aliveNeighbors=neighborCounts(i,j);
+        if(currentGrid[i][j].isAlive){
+          if((aliveNeighbors==2)||(aliveNeighbors==3)){
+            row.push({
+              isAlive: 1,
+              newBorn: 0
+            });
+          }
+          else{
+            row.push({
+              isAlive: 0,
+              newBorn: 0
+            });
+          }
+        }
+        else if(!currentGrid[i][j].isAlive){
+          if(aliveNeighbors==3){
+            row.push({
+              isAlive: 1,
+              newBorn: 1
+            });
+          }
+          else{
+            row.push({
+              isAlive: 0,
+              newBorn: 0
+            });
+          }
+        }
      }
+     newGrid.push(row);
   }
 
+  return newGrid;
 }
 
 
