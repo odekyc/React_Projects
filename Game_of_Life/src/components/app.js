@@ -209,7 +209,11 @@ const Button=({id, title, handleClick})=>(
 );
 
 const Cell=({newBorn, isAlive, handleClick})=>(
-     <td className={classNames('cell', 'alive')}></td>
+
+     <td className={classNames({'cell': true, 
+      'alive': isAlive,
+      'newborn': newBorn,
+      'dead': !isAlive && !newBorn})}></td>
 );
 
 const Counter=({genCount})=>(
