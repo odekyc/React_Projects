@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 
+var classNames=require('classnames');
 
 const GridHeight=50;
 
@@ -208,7 +209,7 @@ const Button=({id, title, handleClick})=>(
 );
 
 const Cell=({newBorn, isAlive, handleClick})=>(
-     <td className='cell'></td>
+     <td className={classNames('cell', 'alive')}></td>
 );
 
 const Counter=({genCount})=>(
@@ -221,11 +222,11 @@ const Counter=({genCount})=>(
 class Grid extends Component {
 
 	render(){
-    let newEmptyGrid=EmptyGrid(50,70);
-    var rows=newEmptyGrid.map(function(row, i){
+    let newRandGrid=RandomGrid(50,70);
+    var rows=newRandGrid.map(function(row, i){
         var entry=row.map(function(element, i){
           return(
-            <Cell />
+            <Cell newBorn={element.newBorn} isAlive={element.isAlive} />
            );
         });
         return(

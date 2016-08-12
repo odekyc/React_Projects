@@ -9,6 +9,19 @@
 }
 
 
+.alive{
+
+   background-color: yellow;
+   z-index: 4;
+}
+
+.newborn{
+   height: 15px;
+  width: 15px;
+  
+  float: left;
+  background-color: green;
+}
 
 #grid{
   position: absolute;
@@ -83,7 +96,6 @@ table, th, td{
   height: 15px;
   width: 15px;
   
-  background-color: #bfff80;
   float: left;
 
 }
