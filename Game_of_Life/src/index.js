@@ -44,6 +44,7 @@ function changeSpeed(newInterval){
 }
 
 function changeGridSize(newDimension){
+  alert(newDimension);
   return{
     type:'changegridsize',
     payload: newDimension
@@ -290,6 +291,7 @@ const mapDispatchToProps2=(dispatch) =>{
 const Upperpad= connect(mapStateToProps2, mapDispatchToProps2)(Upperpad_);
 
 class Lowerpad_ extends Component{
+  
 
 	render(){
 
@@ -300,7 +302,7 @@ class Lowerpad_ extends Component{
     <br />
     <p id="sim_spd"> Sim Speed</p>
     <div id="lowerbuts">
-    <Button id={"bottom1"} title={"Size: 50X30"}></Button>
+    <Button id={"bottom1"} handleClick={ () => this.props.changedimension('50X30') } title={"Size: 50X30"}></Button>
     <Button id={"bottom2"} title={"Size:70X50"}></Button>
     <Button id={"bottom3"} title={"Size:100X80"}></Button>
     <Button id={"bottom4"} title={"SLOW"}></Button>
@@ -314,6 +316,8 @@ class Lowerpad_ extends Component{
      );
 
 	};
+
+
 }
 
 const mapDispatchToProps3=(dispatch) =>{
@@ -323,7 +327,7 @@ const mapDispatchToProps3=(dispatch) =>{
 	};
 }
 
-const Lowerpad= connect(null , mapDispatchToProps2)(Lowerpad_);
+const Lowerpad= connect(mapStateToProps2 , mapDispatchToProps3)(Lowerpad_);
 
 
 // reducers
@@ -393,7 +397,7 @@ class App extends Component {
   	
   	  <Upperpad/>
      <Gameboard/>
-     <Lowerpad_/>
+     <Lowerpad/>
     </div>
   	
   
