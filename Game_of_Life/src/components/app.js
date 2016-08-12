@@ -38,10 +38,23 @@ function getNextGrid(){
   };
 }
 
+function changeSpeed(newInterval){
+  return{
+    type: 'changespeed',
+    payload: newInterval
+  };
+}
+
+function changeGridSize(newDimension){
+  return{
+    type:'changegridsize',
+    payload: newDimension
+  };
+}
 
 // reducers
 
-const genCountReducer=(state=0, action)=>{
+const genCountReducer=(state=1, action)=>{
 
   switch(action.type){
     case 'increcounter':
@@ -49,8 +62,16 @@ const genCountReducer=(state=0, action)=>{
       return state+1;
 
     case 'cleargrid':
-      state=0;
-      return state;
+      
+      return 0;
+
+    case 'changespeed':
+      
+      return 1;
+
+    case 'changegridsize':
+      
+      return 1;
 
     default:
       return state;
@@ -280,7 +301,7 @@ class Upperpad_ extends Component{
       <Button id={"top2"} title={"Pause"}></Button>
         <Button id={"top3"} title={"Clear"}></Button>
     </div>
-     <Counter genCount={900000}></Counter>
+     <Counter genCount={1}></Counter>
     </div>
 
      );
