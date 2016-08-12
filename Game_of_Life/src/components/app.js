@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import {combineReducers} from 'redux';
 
 var classNames=require('classnames');
 
@@ -108,6 +109,12 @@ const makeGridReducer=(state=RandomGrid(GridHeight, GridWidth), action) =>{
   }
 }
 
+//combine reducers
+
+const reducers=combineReducers({
+  genCount: genCountReducer,
+  makeGrid: makeGridReducer,
+});
 
 //global functions that make empty grid, random grid, advance grid
 
@@ -276,10 +283,9 @@ class Grid extends Component {
          </tbody>
          </table>
 	);
-	}
-
-    
+	}   
 }
+
 
 class Gameboard_ extends Component {
 
@@ -297,6 +303,7 @@ class Gameboard_ extends Component {
 	}
 }
 
+const Gameboard mapStateToProp1=
 class Upperpad_ extends Component{
 
 	render(){
