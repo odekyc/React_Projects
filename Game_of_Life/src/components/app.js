@@ -85,7 +85,7 @@ const genCountReducer=(state=1, action)=>{
 }
 
 
-const makeGridReducer=(state=[], action) =>{
+const makeGridReducer=(state=RandomGrid(GridHeight, GridWidth), action) =>{
 
   switch(action.type){
     case 'cleargrid':
