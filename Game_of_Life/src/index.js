@@ -16,13 +16,6 @@ const intervalTime=100;
 
 // action functions
 
-function IncreCounter(){
-
-  return{
-    type: 'increcounter'
-
-  };
-}
 
 function ClearGrid(){
   return{
@@ -57,12 +50,18 @@ function changeGridSize(newDimension){
   };
 }
 
-function returnGrid(){
+function Run(){
   return{
-    type: 'returngrid'
+    type: 'run'
   };
 }
 
+
+function Pause(){
+  return{
+    type: 'pause'
+  };
+}
 
 //global functions that make empty grid, random grid, advance grid
 
@@ -268,13 +267,27 @@ class Upperpad_ extends Component{
       <Button id={"top2"} title={"Pause"}></Button>
         <Button id={"top3"} title={"Clear"}></Button>
     </div>
-     <Counter genCount={1}></Counter>
+     <Counter genCount={ this.props.genCount }></Counter>
     </div>
 
      );
 
 	};
 }
+
+const mapStateToProps2=({genCount}) =>{
+	return { genCount }
+};
+
+const mapDispatchToProps2=(dispatch) =>{
+	return{
+		run: () => dispatch(Run()),
+		pause: () => dispatch( Pause()),
+		clear: () => dispatch( ClearGrid())
+	};
+}
+
+const Upperpad= connect(mapStateToProps2, mapDispatchToProps2)(Upperpad_);
 
 class Lowerpad_ extends Component{
 
@@ -303,12 +316,22 @@ class Lowerpad_ extends Component{
 	};
 }
 
+const mapDispatchToProps3=(dispatch) =>{
+	return{
+		changedimension: (newdim) => dispatch(changeGridSize(newdim)),
+		changespd: (newint) => dispatch( changeSpeed(newint))
+	};
+}
+
+const Lowerpad= connect(null , mapDispatchToProps2)(Lowerpad_);
+
+
 // reducers
 
 const genCountReducer=(state=1, action)=>{
 
   switch(action.type){
-    case 'increcounter':
+    case 'nextgrid':
 
       return state+1;
 
@@ -368,7 +391,7 @@ class App extends Component {
     
   	     <div>
   	
-  	  <Upperpad_/>
+  	  <Upperpad/>
      <Gameboard/>
      <Lowerpad_/>
     </div>
