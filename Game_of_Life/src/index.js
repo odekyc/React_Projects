@@ -303,8 +303,8 @@ class Lowerpad_ extends Component{
     <p id="sim_spd"> Sim Speed</p>
     <div id="lowerbuts">
     <Button id={"bottom1"} handleClick={ () => this.props.changedimension('50X30') } title={"Size: 50X30"}></Button>
-    <Button id={"bottom2"} title={"Size:70X50"}></Button>
-    <Button id={"bottom3"} title={"Size:100X80"}></Button>
+    <Button id={"bottom2"} handleClick={ () => this.props.changedimension('70X50') } title={"Size:70X50"}></Button>
+    <Button id={"bottom3"} handleClick={ () => this.props.changedimension('100X80') } title={"Size:100X80"}></Button>
     <Button id={"bottom4"} title={"SLOW"}></Button>
     <Button id={"bottom5"} title={"MEDIUM"}></Button>
     <Button id={"bottom6"} title={"FAST"}></Button>
@@ -327,7 +327,7 @@ const mapDispatchToProps3=(dispatch) =>{
 	};
 }
 
-const Lowerpad= connect(mapStateToProps2 , mapDispatchToProps3)(Lowerpad_);
+const Lowerpad= connect(null , mapDispatchToProps3)(Lowerpad_);
 
 
 // reducers
@@ -373,6 +373,10 @@ const makeGridReducer=(state=RandomGrid(GridHeight, GridWidth), action) =>{
 
     case 'returngrid':
 
+      return state;
+
+    case 'changegridsize':
+      $('#gameboard').css();
       return state;
 
     default:
