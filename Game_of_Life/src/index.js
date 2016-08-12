@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import React from 'react';
 import { Component } from 'react';
 import {combineReducers} from 'redux';
+import { connect } from 'react-redux';
 
 var classNames=require('classnames');
 
@@ -211,8 +212,7 @@ const Counter=({genCount})=>(
 class Grid extends Component {
 
 	render(){
-    let newRandGrid=RandomGrid(50,70);
-    var rows=newRandGrid.map(function(row, i){
+    var rows=this.props.grid.map(function(row, i){
         var entry=row.map(function(element, i){
           return(
             <Cell newBorn={element.newBorn} isAlive={element.isAlive} />
@@ -242,7 +242,7 @@ class Gameboard_ extends Component {
          <center>
          <div id="gameboard" >
            
-           <Grid />
+           <Grid grid={ this.props.makeGrid }/>
 
           </div>
           </center>
@@ -250,6 +250,11 @@ class Gameboard_ extends Component {
 	}
 }
 
+const mapStateToProps1=({makeGrid}) =>{
+	return { makeGrid }
+};
+
+const Gameboard= connect(mapStateToProps1)(Gameboard_);
 
 class Upperpad_ extends Component{
 
@@ -364,7 +369,7 @@ class App extends Component {
   	     <div>
   	
   	  <Upperpad_/>
-     <Gameboard_/>
+     <Gameboard/>
      <Lowerpad_/>
     </div>
   	
