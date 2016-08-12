@@ -52,6 +52,12 @@ function changeGridSize(newDimension){
   };
 }
 
+function returnGrid(){
+  return{
+    type: 'returngrid'
+  };
+}
+
 // reducers
 
 const genCountReducer=(state=1, action)=>{
@@ -92,6 +98,10 @@ const makeGridReducer=(state=[], action) =>{
     case 'nextgrid':
 
       return NextGrid(state);
+
+    case 'returngrid':
+
+      return state;
 
     default:
       return state;
@@ -285,8 +295,6 @@ class Gameboard_ extends Component {
           </center>
 	);
 	}
-
-
 }
 
 class Upperpad_ extends Component{
