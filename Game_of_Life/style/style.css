@@ -143,7 +143,7 @@ table, th, td{
 #bottom1{
      position: absolute;
      top: 28px;
-     left: 210px;
+     left: 290px;
      color: white;
      font-size: 70%;
       border-radius: 15px;
@@ -153,24 +153,16 @@ table, th, td{
 #bottom2{
      position: absolute;
      top: 28px;
-     left: 370px;
+     left: 450px;
      color: white;
      font-size: 70%;
       border-radius: 15px;
        width: 130px;
 }
+
+
 
 #bottom3{
-     position: absolute;
-     top: 28px;
-     left: 530px;
-     color: white;
-     font-size: 70%;
-      border-radius: 15px;
-       width: 130px;
-}
-
-#bottom4{
      position: absolute;
      top: 83px;
      left: 210px;
@@ -180,7 +172,7 @@ table, th, td{
        width: 130px;
 }
 
-#bottom5{
+#bottom4{
      position: absolute;
      top: 83px;
      left: 370px;
@@ -190,7 +182,7 @@ table, th, td{
      width: 130px;
 }
 
-#bottom6{
+#bottom5{
      position: absolute;
      top: 83px;
      left: 530px;

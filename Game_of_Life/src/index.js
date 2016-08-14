@@ -294,11 +294,10 @@ class Lowerpad_ extends Component{
     <p id="sim_spd"> Sim Speed</p>
     <div id="lowerbuts">
     <Button id={"bottom1"}  setClass={""}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
-    <Button id={"bottom2"} setClass={"activebut"}  handleClick={ () => this.props.changedimension('70X50') } title={"Size:70X50"}></Button>
-    <Button id={"bottom3"}  setClass={""}  handleClick={ () => this.props.changedimension('100X80') } title={"Size:100X80"}></Button>
-    <Button id={"bottom4"}  setClass={""}  title={"SLOW"}></Button>
-    <Button id={"bottom5"} setClass={"activebut"}  title={"MEDIUM"}></Button>
-    <Button id={"bottom6"}  setClass={""}  title={"FAST"}></Button>
+    <Button id={"bottom2"} setClass={"activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
+    <Button id={"bottom3"}  setClass={""}  title={"SLOW"}></Button>
+    <Button id={"bottom4"} setClass={"activebut"}  title={"MEDIUM"}></Button>
+    <Button id={"bottom5"}  setClass={""}  title={"FAST"}></Button>
     </div>
     </div>
     </div>
@@ -317,7 +316,23 @@ class Lowerpad_ extends Component{
       $('#lowerpad').css('top','670px');
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom1').addClass('activebut');
+      actvbottombut="bottom1";
   }
+
+  changeDimMed(){
+      this.props.changedimension('70X50'); 
+     $('.cell').css("height", "15px");
+       $('.cell').css("width", "15px");
+      $('#gameboard').css('width', '1110px');
+      $('#gameboard').css('height', '840px');
+      $('#gameboard').css('left', '165px');
+      $('#lowerpad').css('top','880px');
+      alert(actvbottombut);
+      $('#'+actvbottombut).removeClass('activebut');
+      $('#bottom2').addClass('activebut');
+      actvbottombut="bottom2";
+  }
+
 }
 
 const mapDispatchToProps3=(dispatch) =>{
