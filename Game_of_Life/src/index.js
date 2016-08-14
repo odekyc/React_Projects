@@ -14,6 +14,12 @@ let GridWidth=70;
 
 let intervalTime=100;
 
+var actvbottombut="bottom2";
+var actvspdbut="bottom5";
+var actvstate="top1";
+
+
+
 // action functions
 
 
@@ -191,9 +197,9 @@ const NextGrid=(currentGrid)=>{
 
 //dumb components, not involved in dispatching actions and has nothing to do with 
 //updating states in redux
-const Button=({id, title, handleClick})=>(
+const Button=({id, title, setClass, handleClick})=>(
 
-    <button id={id} onClick={handleClick}>{title}</button>      
+    <button id={id} className={setClass} onClick={handleClick}>{title}</button>      
 
 );
 
@@ -242,16 +248,15 @@ class Gameboard_ extends Component {
 
 	render(){
 
-    alert("gameboard rerender");
     return(
      <div>
-         <center>
+       
          <div id="gameboard" >
            
            <Grid grid={ this.props.makeGrid }/>
 
           </div>
-          </center>
+       
      </div>
    );
 	}
@@ -288,12 +293,12 @@ class Lowerpad_ extends Component{
     <br />
     <p id="sim_spd"> Sim Speed</p>
     <div id="lowerbuts">
-    <Button id={"bottom1"} handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
-    <Button id={"bottom2"} handleClick={ () => this.props.changedimension('70X50') } title={"Size:70X50"}></Button>
-    <Button id={"bottom3"} handleClick={ () => this.props.changedimension('100X80') } title={"Size:100X80"}></Button>
-    <Button id={"bottom4"} title={"SLOW"}></Button>
-    <Button id={"bottom5"} title={"MEDIUM"}></Button>
-    <Button id={"bottom6"} title={"FAST"}></Button>
+    <Button id={"bottom1"}  setClass={""}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
+    <Button id={"bottom2"} setClass={"activebut"}  handleClick={ () => this.props.changedimension('70X50') } title={"Size:70X50"}></Button>
+    <Button id={"bottom3"}  setClass={""}  handleClick={ () => this.props.changedimension('100X80') } title={"Size:100X80"}></Button>
+    <Button id={"bottom4"}  setClass={""}  title={"SLOW"}></Button>
+    <Button id={"bottom5"} setClass={"activebut"}  title={"MEDIUM"}></Button>
+    <Button id={"bottom6"}  setClass={""}  title={"FAST"}></Button>
     </div>
     </div>
     </div>
@@ -304,6 +309,14 @@ class Lowerpad_ extends Component{
 
   changeDimSmall(){
     this.props.changedimension('50X30'); 
+     $('.cell').css("height", "18px");
+       $('.cell').css("width", "18px");
+      $('#gameboard').css('width', '960px');
+      $('#gameboard').css('height', '630px');
+      $('#gameboard').css('left', '240px');
+      $('#lowerpad').css('top','670px');
+      $('#'+actvbottombut).removeClass('activebut');
+      $('#bottom1').addClass('activebut');
   }
 }
 
@@ -326,9 +339,9 @@ class Upperpad_ extends Component{
 
        <div id="upperpad">
     <div id="upperbut">
-     <Button id={"top1"} title={"Run"}></Button>
-      <Button id={"top2"} title={"Pause"}></Button>
-        <Button id={"top3"} title={"Clear"}></Button>
+     <Button id={"top1"} setClass={"activebut"} title={"Run"}></Button>
+      <Button id={"top2"}  setClass={""} title={"Pause"}></Button>
+        <Button id={"top3"} setClass={""} title={"Clear"}></Button>
     </div>
      <Counter genCount={ this.props.Count }></Counter>
     </div>
@@ -384,7 +397,7 @@ const genCountReducer=(state=1, action)=>{
 
     case 'changegridsize':
       
-      return 2;
+      return 1;
 
     default:
       return state;
@@ -416,11 +429,8 @@ const makeGridReducer=(state=initialGrid, action) =>{
       alert(widthHeightArr);
       GridWidth=Number(widthHeightArr[0]);
       GridHeight=Number(widthHeightArr[1]);
-      alert(typeof GridWidth);
-      alert(GridHeight);
-      $('.cell').css("height", "18px");
-      $('#gameboard').css('width', '700px');
-      return EmptyGrid(Number(widthHeightArr[1]), Number(widthHeightArr[0]));
+     
+      return RandomGrid(GridHeight, GridWidth);
 
     default:
       return state;

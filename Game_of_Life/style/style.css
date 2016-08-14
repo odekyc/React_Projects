@@ -1,7 +1,7 @@
 #gameboard{
     position: absolute;
-    margin: 0 auto;
     top: 70px;
+    left: 165px;
 	  background-color: #9999ff;
 	  height: 840px;
 	 width: 1110px;
@@ -41,6 +41,11 @@ html{
 
 body{
 	display: inline;
+}
+
+.activebut{
+   background-color: green;
+
 }
 
 #lowerpad{
