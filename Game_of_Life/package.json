@@ -33,7 +33,7 @@
     "classnames": "^2.2.5",
     "griddle-react": "^0.5.1",
     "lodash": "^3.10.1",
-    "react": "^0.14.3",
+    "react": "^0.14.8",
     "react-data-grid": "^0.14.42",
     "react-dom": "^0.14.3",
     "react-grid-components": "^0.1.1",

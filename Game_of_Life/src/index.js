@@ -8,11 +8,11 @@ import { connect } from 'react-redux';
 
 var classNames=require('classnames');
 
-const GridHeight=50;
+let GridHeight=50;
 
-const GridWidth=70;
+let GridWidth=70;
 
-const intervalTime=100;
+let intervalTime=100;
 
 // action functions
 
@@ -63,6 +63,9 @@ function Pause(){
     type: 'pause'
   };
 }
+
+
+
 
 //global functions that make empty grid, random grid, advance grid
 
@@ -236,9 +239,12 @@ class Grid extends Component {
 
 class Gameboard_ extends Component {
 
+
 	render(){
 
-		return (
+    alert("gameboard rerender");
+    return(
+     <div>
          <center>
          <div id="gameboard" >
            
@@ -246,19 +252,75 @@ class Gameboard_ extends Component {
 
           </div>
           </center>
-	);
+     </div>
+   );
 	}
 }
 
-const mapStateToProps1=({makeGrid}) =>{
-	return { makeGrid }
+const mapStateToProps=({makeGrid}) =>{
+  return { makeGrid }
 };
 
-const Gameboard= connect(mapStateToProps1)(Gameboard_);
+
+
+
+const Gameboard= connect(mapStateToProps)(Gameboard_);
+
+
+
+class Lowerpad_ extends Component{
+  
+
+  constructor(){
+
+    super();
+   
+  }
+
+	render(){
+
+      return(
+        <div>
+       
+         <div id="lowerpad">
+    
+    <p id="board_sz">Board Size:</p>
+    <br />
+    <p id="sim_spd"> Sim Speed</p>
+    <div id="lowerbuts">
+    <Button id={"bottom1"} handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
+    <Button id={"bottom2"} handleClick={ () => this.props.changedimension('70X50') } title={"Size:70X50"}></Button>
+    <Button id={"bottom3"} handleClick={ () => this.props.changedimension('100X80') } title={"Size:100X80"}></Button>
+    <Button id={"bottom4"} title={"SLOW"}></Button>
+    <Button id={"bottom5"} title={"MEDIUM"}></Button>
+    <Button id={"bottom6"} title={"FAST"}></Button>
+    </div>
+    </div>
+    </div>
+
+     );
+
+	};
+
+  changeDimSmall(){
+    this.props.changedimension('50X30'); 
+  }
+}
+
+const mapDispatchToProps3=(dispatch) =>{
+  return{
+    changedimension: (newdim) => dispatch(changeGridSize(newdim)),
+    changespd: (newint) => dispatch( changeSpeed(newint))
+  };
+}
+
+
+const Lowerpad= connect(null, mapDispatchToProps3)(Lowerpad_);
+
 
 class Upperpad_ extends Component{
 
-	render(){
+  render(){
 
       return(
 
@@ -268,66 +330,39 @@ class Upperpad_ extends Component{
       <Button id={"top2"} title={"Pause"}></Button>
         <Button id={"top3"} title={"Clear"}></Button>
     </div>
-     <Counter genCount={ this.props.genCount }></Counter>
+     <Counter genCount={ this.props.Count }></Counter>
     </div>
 
      );
 
-	};
+  };
 }
 
 const mapStateToProps2=({genCount}) =>{
-	return { genCount }
+  return { Count: genCount }
 };
 
 const mapDispatchToProps2=(dispatch) =>{
-	return{
-		run: () => dispatch(Run()),
-		pause: () => dispatch( Pause()),
-		clear: () => dispatch( ClearGrid())
-	};
+  return{
+    run: () => dispatch(Run()),
+    pause: () => dispatch( Pause()),
+    clear: () => dispatch( ClearGrid())
+  };
 }
 
 const Upperpad= connect(mapStateToProps2, mapDispatchToProps2)(Upperpad_);
 
-class Lowerpad_ extends Component{
-  
+const App =()=> (
 
-	render(){
-
-      return(
-         <div id="lowerpad">
-    <div>
-    <p id="board_sz">Board Size:</p>
-    <br />
-    <p id="sim_spd"> Sim Speed</p>
-    <div id="lowerbuts">
-    <Button id={"bottom1"} handleClick={ () => this.props.changedimension('50X30') } title={"Size: 50X30"}></Button>
-    <Button id={"bottom2"} handleClick={ () => this.props.changedimension('70X50') } title={"Size:70X50"}></Button>
-    <Button id={"bottom3"} handleClick={ () => this.props.changedimension('100X80') } title={"Size:100X80"}></Button>
-    <Button id={"bottom4"} title={"SLOW"}></Button>
-    <Button id={"bottom5"} title={"MEDIUM"}></Button>
-    <Button id={"bottom6"} title={"FAST"}></Button>
+    
+         <div>
+    
+      <Upperpad />
+      <Gameboard />
+     <Lowerpad />
     </div>
-    </div>
-    </div>
-      
 
-     );
-
-	};
-
-
-}
-
-const mapDispatchToProps3=(dispatch) =>{
-	return{
-		changedimension: (newdim) => dispatch(changeGridSize(newdim)),
-		changespd: (newint) => dispatch( changeSpeed(newint))
-	};
-}
-
-const Lowerpad= connect(null , mapDispatchToProps3)(Lowerpad_);
+  );
 
 
 // reducers
@@ -349,15 +384,16 @@ const genCountReducer=(state=1, action)=>{
 
     case 'changegridsize':
       
-      return 1;
+      return 2;
 
     default:
       return state;
    }
 }
 
+const initialGrid=RandomGrid(GridHeight, GridWidth);
 
-const makeGridReducer=(state=RandomGrid(GridHeight, GridWidth), action) =>{
+const makeGridReducer=(state=initialGrid, action) =>{
 
   switch(action.type){
     case 'cleargrid':
@@ -376,13 +412,22 @@ const makeGridReducer=(state=RandomGrid(GridHeight, GridWidth), action) =>{
       return state;
 
     case 'changegridsize':
-      $('#gameboard').css();
-      return state;
+      let widthHeightArr=action.payload.split('X');
+      alert(widthHeightArr);
+      GridWidth=Number(widthHeightArr[0]);
+      GridHeight=Number(widthHeightArr[1]);
+      alert(typeof GridWidth);
+      alert(GridHeight);
+      $('.cell').css("height", "18px");
+      $('#gameboard').css('width', '700px');
+      return EmptyGrid(Number(widthHeightArr[1]), Number(widthHeightArr[0]));
 
     default:
       return state;
   }
 }
+
+
 
 //combine reducers
 
@@ -390,28 +435,6 @@ const reducers=combineReducers({
   genCount: genCountReducer,
   makeGrid: makeGridReducer,
 });
-
-class App extends Component {
-
-	render(){
-
-		return (
-    
-  	     <div>
-  	
-  	  <Upperpad/>
-     <Gameboard/>
-     <Lowerpad/>
-    </div>
-  	
-  
-  
-    
-	);
-	}
-
-
-}
 
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
