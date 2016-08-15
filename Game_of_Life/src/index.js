@@ -1,10 +1,8 @@
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import React from 'react';
-import { Component } from 'react';
-import {combineReducers} from 'redux';
-import { connect } from 'react-redux';
+const { Component } = React;
+const { createStore, applyMiddleware } = Redux;
+const { Provider } = ReactRedux;
+const { connect } = ReactRedux;
+const { combineReducers } = Redux;
 
 var classNames=require('classnames');
 
@@ -318,8 +316,8 @@ class Lowerpad_ extends Component{
 
   changeDimMed(){
       this.props.changedimension('70X50'); 
-     $('.cell').css("height", "15px");
-       $('.cell').css("width", "15px");
+     $('td').css("height", "15px");
+       $('td').css("width", "15px");
       $('#gameboard').css('width', '1110px');
       $('#gameboard').css('height', '840px');
       $('#gameboard').css('left', '165px');
