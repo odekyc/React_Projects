@@ -82,8 +82,7 @@ const EmptyGrid=(height, width)=>{
     for(var j=0; j<width; j++){
       row.push({
         isAlive: 0,
-        newBorn: 0,
-        isDead: 1
+        newBorn: 0
       });
     }
     grid.push(row);
@@ -103,15 +102,13 @@ const RandomGrid=(height, width)=>{
        count++;
        row.push({
         isAlive: 1,
-        newBorn: 1,
-        isDead: 0
+        newBorn: 1
       });
       }
       else{
         row.push({
           isAlive: 0,
-          newBorn: 0,
-          isDead: 1
+          newBorn: 0
         });
       }
     }
@@ -156,23 +153,22 @@ const NextGrid=(currentGrid)=>{
          let neighbours = neighborCounts(i,j);
            if (cellIsAlive) {
                 if (neighbours < 2) {
-                    row.push({ isAlive: 0 , newBorn: 0, isDead: 1 });
+                    row.push({ isAlive: 0 , newBorn: 0 });
                 } else if (neighbours > 3){
-                    row.push({ isAlive: 0 , newBorn: 0, isDead: 1 });
+                    row.push({ isAlive: 0 , newBorn: 0});
                 } else {
-                    row.push({ isAlive: 1 , newBorn: 0, isDead: 0 });
+                    row.push({ isAlive: 1 , newBorn: 0});
                 }
             }
             if (!cellIsAlive) {
                 if (neighbours >= 3) {
                 row.push({
                   isAlive: 1,
-                  newBorn: 1,
-                  isDead:0
+                  newBorn: 1
                 });
                 count++;
             } else {
-                row.push({ isAlive: 0 , newBorn: 0 , isDead: 1});
+                row.push({ isAlive: 0 , newBorn: 0 });
                 }
             }
      }
@@ -195,7 +191,7 @@ const Button=({id, title, setClass, handleClick})=>(
 
 const Cell=({newBorn, isAlive, isDead, handleClick})=>(
 
-     <td className={"cell "+`${ isAlive ? 'alive' : ''} ${isDead ? 'dead' : ''} ${newBorn ? 'newborn' : ''}`}></td>
+     <td className={`${ isAlive ? 'alive' : ''} ${newBorn ? 'newborn' : ''}`}></td>
 );
 
 const Counter=({genCount})=>(
@@ -233,7 +229,7 @@ class Grid extends Component {
 class Gameboard_ extends Component {
 
   componentDidMount(){
-      setInterval(this.props.nextGrid, 600);
+     
   }
 
 	render(){
@@ -244,9 +240,7 @@ class Gameboard_ extends Component {
      <div>
        
          <div id="gameboard" >
-           
-           <Grid grid={ this.props.makeGrid }/>
-
+           <Grid grid={this.props.makeGrid}/>
           </div>
        
      </div>
@@ -278,6 +272,11 @@ class Lowerpad_ extends Component{
     super();
    
   }
+   
+  componentDidMount(){
+     this.props.initrandgrid();
+     setInterval(this.props.nextGrid, 1000);
+  }
 
 	render(){
 
@@ -306,8 +305,8 @@ class Lowerpad_ extends Component{
 
   changeDimSmall(){
     this.props.changedimension('50X30'); 
-     $('.cell').css("height", "18px");
-       $('.cell').css("width", "18px");
+     $('td').css("height", "18px");
+       $('td').css("width", "18px");
       $('#gameboard').css('width', '960px');
       $('#gameboard').css('height', '630px');
       $('#gameboard').css('left', '240px');
@@ -345,6 +344,8 @@ const mapDispatchToProps3=(dispatch) =>{
   return{
     changedimension: (newdim) => dispatch(changeGridSize(newdim)),
     changespd: (newint) => dispatch( changeSpeed(newint)),
+    nextGrid: () => dispatch(getNextGrid()),
+    initrandgrid: ()=> dispatch(initRandGrid()),
     nextGrid: () => dispatch(getNextGrid())
   };
 }
@@ -426,7 +427,7 @@ const genCountReducer=(state=1, action)=>{
    }
 }
 
-const initialGrid=RandomGrid(GridHeight, GridWidth);
+const initialGrid=EmptyGrid(GridHeight, GridWidth);
 
 const makeGridReducer=(state=initialGrid, action) =>{
 

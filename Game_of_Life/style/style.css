@@ -13,20 +13,17 @@
 .alive{
 
    background-color: #ace600;
-   z-index: 4;
+
 }
 
 .newborn{
-   height: 15px;
-  width: 15px;
-  
-  float: left;
+
   background-color: #ffff99;
 }
 
 #grid{
   position: absolute;
-  background-color: white;
+  background-color:  #e6e6e6;
   color: #ffff66;
   top: 30px;
   left: 30px;
@@ -62,7 +59,9 @@ body{
 }
 
 #top1{
-     
+     position: absolute;
+     top: 10px;
+     left: 20px;
      color: white;
      font-size: 70%;
       border-radius: 15px;
@@ -71,7 +70,9 @@ body{
 
 
 #top2{
-     
+     position: absolute;
+     top: 10px;
+     left: 120px;
      color: white;
      font-size: 70%;
      margin-left: 20px;
@@ -79,7 +80,9 @@ body{
 }
 
 #top3{
-     
+     position: absolute;
+     left: 240px;
+     top: 10px;
      color: white;
      font-size: 70%;
      margin-left: 20px;
@@ -93,21 +96,16 @@ button{
    background-color: purple;
 }
 
-table, th, td{
-   border: 1px solid white;
 
-}
 
-.dead{
-    background-color: #e6e6e6;
-}
-
-.cell{
+td {
+  border: 1px solid white;
   height: 15px;
   width: 15px;
-  float: left;
-
+  &:hover:not(.alive):not(.new-born) ;
+  }
 }
+
 #upperbut{
   position:absolute;
   left: 20px;
@@ -127,6 +125,7 @@ table, th, td{
   position:absolute;
   top: 10px;
   background-color: #bfff00;
+
   height: 90px;
   width: 700px;
   left: 370px;
