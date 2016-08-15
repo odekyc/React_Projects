@@ -15,10 +15,10 @@ let GridWidth=70;
 let intervalTime=100;
 
 var actvbottombut="bottom2";
-var actvspdbut="bottom5";
+var actvspdbut="bottom4";
 var actvstate="top1";
-
-
+var running=0;
+var runInt;
 
 // action functions
 
@@ -37,15 +37,15 @@ function initRandGrid(){
 }
 
 function getNextGrid(){
+
   return{
     type: 'nextgrid'
   };
 }
 
-function changeSpeed(newInterval){
+function changeSpeed(){
   return{
-    type: 'changespeed',
-    payload: newInterval
+    type: 'changespeed'
   };
 }
 
@@ -82,7 +82,8 @@ const EmptyGrid=(height, width)=>{
     for(var j=0; j<width; j++){
       row.push({
         isAlive: 0,
-        newBorn: 0
+        newBorn: 0,
+        isDead: 1
       });
     }
     grid.push(row);
@@ -100,97 +101,86 @@ const RandomGrid=(height, width)=>{
       let randomStatus= Math.random() >0.80;
       if(randomStatus){
        count++;
-      }
-      row.push({
-        isAlive: Number(randomStatus),
-        newBorn: 0
+       row.push({
+        isAlive: 1,
+        newBorn: 1,
+        isDead: 0
       });
+      }
+      else{
+        row.push({
+          isAlive: 0,
+          newBorn: 0,
+          isDead: 1
+        });
+      }
     }
     grid.push(row);
   }
+
   return grid;
 }
 
 
 
 const NextGrid=(currentGrid)=>{
-  let newGrid=[];
-  let aliveNeighbors;
-  let neighborCounts=function(x,y){
-      var neighborsAlive=0;
-      var Xminus1=x-1;
-      var Yminus1=y-1;
-      var Xplus1=x+1;
-      var Yplus1=y+1;
-      
+  var count=0;
+  var aliveNeighbors;
+  var neighborCounts=function(x,y){
+     let topRow = x-1 < 0 ? (GridHeight - 1) : x-1;
+       let bottomRow = (x+1 === GridHeight) ? 0 : x+1;
+       let leftColumn = y-1 < 0 ? (GridWidth - 1) : y-1;
+       let rightColumn = (y+1 === GridWidth) ? 0 : y+1;
 
-      if(Xminus1<0){
-        Xminus1=GridWidth-1;
-      }
+       let total = 0;
+       total+= currentGrid[topRow][leftColumn].status;
+       total+= currentGrid[topRow][y].status;
+       total+= currentGrid[topRow][rightColumn].status;
+       total+= currentGrid[x][leftColumn].status;
+       total+= currentGrid[x][rightColumn].status;
+       total+= currentGrid[bottomRow][leftColumn].status;
+       total+= currentGrid[bottomRow][y].status;
+       total+= currentGrid[bottomRow][rightColumn].status;
 
-      if(Yminus1<0){
-        Yminus1=GridHeight-1;
-      }
-
-      if(Xplus1===GridWidth){
-        Xplus1=0;
-      }
-     
-      if(Yplus1===GridHeight){
-        Yplus1=0;
-      }
-      
-      neighborsAlive+=currentGrid[Yminus1][Xminus1].isAlive;
-      neighborsAlive+=currentGrid[Yminus1][x].isAlive;
-      neighborsAlive+=currentGrid[Yminus1][Xplus1].isAlive;
-      neighborsAlive+=currentGrid[y][Xminus1].isAlive;
-      neighborsAlive+=currentGrid[y][Xplus1].isAlive;
-      neighborsAlive+=currentGrid[Yplus1][Xminus1].isAlive;
-      neighborsAlive+=currentGrid[Yplus1][x].isAlive;
-      neighborsAlive+=currentGrid[Yplus1][Xplus1].isAlive;
-
-
-    return neighborsAlive;
-     
+       return total;
   };
 
-  for(var i=0; i<currentGrid.length; i++){
-     var row=[];
-     for(var j=0; j<currentGrid[0].length; j++){
-        aliveNeighbors=neighborCounts(i,j);
-        if(currentGrid[i][j].isAlive){
-          if((aliveNeighbors==2)||(aliveNeighbors==3)){
-            row.push({
-              isAlive: 1,
-              newBorn: 0
-            });
-          }
-          else{
-            row.push({
-              isAlive: 0,
-              newBorn: 0
-            });
-          }
-        }
-        else if(!currentGrid[i][j].isAlive){
-          if(aliveNeighbors==3){
-            row.push({
-              isAlive: 1,
-              newBorn: 1
-            });
-          }
-          else{
-            row.push({
-              isAlive: 0,
-              newBorn: 0
-            });
-          }
-        }
-     }
-     newGrid.push(row);
-  }
 
-  return newGrid;
+
+
+   let gameState = [];
+     for (let i = 0; i < GridHeight; i++) {
+       let row = [];
+       for (let j = 0; j < GridWidth; j++) {
+         let cellIsAlive = currentGrid[i][j].isAlive;
+         let neighbours = neighborCounts(i,j);
+           if (cellIsAlive) {
+                if (neighbours < 2) {
+                    row.push({ isAlive: 0 , newBorn: 0, isDead: 1 });
+                } else if (neighbours > 3){
+                    row.push({ isAlive: 0 , newBorn: 0, isDead: 1 });
+                } else {
+                    row.push({ isAlive: 1 , newBorn: 0, isDead: 0 });
+                }
+            }
+            if (!cellIsAlive) {
+                if (neighbours >= 3) {
+                row.push({
+                  isAlive: 1,
+                  newBorn: 1,
+                  isDead:0
+                });
+                count++;
+            } else {
+                row.push({ isAlive: 0 , newBorn: 0 , isDead: 1});
+                }
+            }
+     }
+     gameState.push(row);
+   }
+   
+   return gameState;
+
 }
 
 
@@ -203,12 +193,9 @@ const Button=({id, title, setClass, handleClick})=>(
 
 );
 
-const Cell=({newBorn, isAlive, handleClick})=>(
+const Cell=({newBorn, isAlive, isDead, handleClick})=>(
 
-     <td className={classNames({'cell': true, 
-      'alive': isAlive,
-      'newborn': newBorn,
-      'dead': !isAlive && !newBorn})}></td>
+     <td className={"cell "+`${ isAlive ? 'alive' : ''} ${isDead ? 'dead' : ''} ${newBorn ? 'newborn' : ''}`}></td>
 );
 
 const Counter=({genCount})=>(
@@ -224,7 +211,7 @@ class Grid extends Component {
     var rows=this.props.grid.map(function(row, i){
         var entry=row.map(function(element, i){
           return(
-            <Cell newBorn={element.newBorn} isAlive={element.isAlive} />
+            <Cell newBorn={element.newBorn} isAlive={element.isAlive} isDead={element.isDead} />
            );
         });
         return(
@@ -245,8 +232,13 @@ class Grid extends Component {
 
 class Gameboard_ extends Component {
 
+  componentDidMount(){
+      setInterval(this.props.nextGrid, 600);
+  }
 
 	render(){
+   
+ 
 
     return(
      <div>
@@ -266,10 +258,15 @@ const mapStateToProps=({makeGrid}) =>{
   return { makeGrid }
 };
 
+const mapDispatchToProps1=(dispatch) =>{
+  return{
+    nextGrid: () => dispatch(getNextGrid())
+  };
+}
 
 
 
-const Gameboard= connect(mapStateToProps)(Gameboard_);
+const Gameboard= connect(mapStateToProps, mapDispatchToProps1)(Gameboard_);
 
 
 
@@ -284,6 +281,7 @@ class Lowerpad_ extends Component{
 
 	render(){
 
+  
       return(
         <div>
        
@@ -295,9 +293,9 @@ class Lowerpad_ extends Component{
     <div id="lowerbuts">
     <Button id={"bottom1"}  setClass={""}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
     <Button id={"bottom2"} setClass={"activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
-    <Button id={"bottom3"}  setClass={""}  title={"SLOW"}></Button>
-    <Button id={"bottom4"} setClass={"activebut"}  title={"MEDIUM"}></Button>
-    <Button id={"bottom5"}  setClass={""}  title={"FAST"}></Button>
+    <Button id={"bottom3"}  setClass={""}  title={"SLOW"} handleClick={ () => this.changeSpd(200, "bottom3") }></Button>
+    <Button id={"bottom4"} setClass={"activebut"}  title={"MEDIUM"} handleClick={ () => this.changeSpd(100, "bottom4") }></Button>
+    <Button id={"bottom5"}  setClass={""}  title={"FAST"} handleClick={ () => this.changeSpd(40, "bottom5") }></Button>
     </div>
     </div>
     </div>
@@ -333,12 +331,21 @@ class Lowerpad_ extends Component{
       actvbottombut="bottom2";
   }
 
+  changeSpd(newTimeInt, spdButClicked){
+    intervalTime=newTimeInt;
+    this.props.changespd();
+    $('#'+actvspdbut).removeClass('activebut');
+    $('#'+spdButClicked).addClass('activebut');
+    actvspdbut=spdButClicked;
+  }
+
 }
 
 const mapDispatchToProps3=(dispatch) =>{
   return{
     changedimension: (newdim) => dispatch(changeGridSize(newdim)),
-    changespd: (newint) => dispatch( changeSpeed(newint))
+    changespd: (newint) => dispatch( changeSpeed(newint)),
+    nextGrid: () => dispatch(getNextGrid())
   };
 }
 
@@ -433,15 +440,18 @@ const makeGridReducer=(state=initialGrid, action) =>{
 
     case 'nextgrid':
 
-      return NextGrid(state);
+      return NextGrid(state.slice(0));
 
     case 'returngrid':
 
       return state;
 
+    case 'changespeed':
+
+       return RandomGrid(GridHeight, GridWidth);
+
     case 'changegridsize':
       let widthHeightArr=action.payload.split('X');
-      alert(widthHeightArr);
       GridWidth=Number(widthHeightArr[0]);
       GridHeight=Number(widthHeightArr[1]);
      
