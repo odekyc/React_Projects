@@ -5,6 +5,7 @@
 //CONSTANTS
 var GRID_HEIGHT = 50;
 var GRID_WIDTH = 70;
+var interval=120;
 var actvbottombut="bottom2";
 var actvspdbut="bottom4";
 var actvstate="top1";
@@ -244,7 +245,7 @@ const Board = connect(mapStateToProps_1)(Board_);
 class Upperpad_ extends Component {
   componentDidMount(){
     this.props.initGrid();
-    runInt = setInterval(this.props.nextGrid,100);
+    runInt = setInterval(this.props.nextGrid,interval);
   }
   render(){
     
@@ -359,11 +360,14 @@ class Lowerpad_ extends Component{
   }
 
   changeSpd(newTimeInt, spdButClicked){
-    intervalTime=newTimeInt;
-    this.props.changespd();
+    clearInterval(runInt);
+    interval= Number(newTimeInt);
+    alert(interval);
+    runInt = setInterval(this.props.nextGrid,interval);
     $('#'+actvspdbut).removeClass('activebut');
     $('#'+spdButClicked).addClass('activebut');
     actvspdbut=spdButClicked;
+
   }
 
 }
@@ -371,6 +375,9 @@ class Lowerpad_ extends Component{
 const mapDispatchToProps_3=(dispatch) =>{
   return{
     changedimension: (newdim) => dispatch(changeGridSize(newdim)),
+    initGrid: () => dispatch(initRandGrid()),
+    nextGrid: () => dispatch(getNextGrid()),
+    clearGrid: () => dispatch(clearGrid()),
     changespd: () => dispatch( changeSpeed())
   };
 }
@@ -401,10 +408,6 @@ const boardReducer = (state = initialGrid, action) => {
 
       return state;
 
-    case 'changespeed':
-
-       return RandomGrid(GridHeight, GridWidth);
-
     case 'changegridsize':
       let widthHeightArr=action.payload.split('X');
       GRID_WIDTH=Number(widthHeightArr[0]);
@@ -431,10 +434,6 @@ const generationCounterReducer = (state = 0, action) => {
     case 'cleargrid':
       return 0;
     case 'randomgrid':
-      return 0;
-
-    case 'changespeed':
-      
       return 0;
 
     case 'changegridsize':
