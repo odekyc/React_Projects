@@ -4,8 +4,6 @@ const { Provider } = ReactRedux;
 const { connect } = ReactRedux;
 const { combineReducers } = Redux;
 
-var classNames=require('classnames');
-
 let GridHeight=50;
 
 let GridWidth=70;
@@ -75,12 +73,13 @@ function Pause(){
 
 const EmptyGrid=(height, width)=>{
   let grid=[];
+  let value;
   for(var i=0; i<height; i++){
     var row=[];
     for(var j=0; j<width; j++){
       row.push({
-        isAlive: 0,
-        newBorn: 0
+        isAlive: value,
+        newBorn: value
       });
     }
     grid.push(row);
@@ -187,7 +186,7 @@ const Button=({id, title, setClass, handleClick})=>(
 
 );
 
-const Cell=({newBorn, isAlive, isDead, handleClick})=>(
+const Cell=({newBorn, isAlive, handleClick})=>(
 
      <td className={`${ isAlive ? 'alive' : ''} ${newBorn ? 'newborn' : ''}`}></td>
 );
@@ -205,7 +204,7 @@ class Grid extends Component {
     var rows=this.props.grid.map(function(row, i){
         var entry=row.map(function(element, i){
           return(
-            <Cell newBorn={element.newBorn} isAlive={element.isAlive} isDead={element.isDead} />
+            <Cell newBorn={element.newBorn} isAlive={element.isAlive} />
            );
         });
         return(
@@ -238,7 +237,7 @@ class Gameboard_ extends Component {
      <div>
        
          <div id="gameboard" >
-           <Grid grid={this.props.makeGrid}/>
+           <Grid grid={this.props.makeGrid} />
           </div>
        
      </div>
@@ -288,11 +287,11 @@ class Lowerpad_ extends Component{
     <br />
     <p id="sim_spd"> Sim Speed</p>
     <div id="lowerbuts">
-    <Button id={"bottom1"}  setClass={""}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
-    <Button id={"bottom2"} setClass={"activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
-    <Button id={"bottom3"}  setClass={""}  title={"SLOW"} handleClick={ () => this.changeSpd(200, "bottom3") }></Button>
-    <Button id={"bottom4"} setClass={"activebut"}  title={"MEDIUM"} handleClick={ () => this.changeSpd(100, "bottom4") }></Button>
-    <Button id={"bottom5"}  setClass={""}  title={"FAST"} handleClick={ () => this.changeSpd(40, "bottom5") }></Button>
+    <Button id={"bottom1"}  setClass={"button"}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
+    <Button id={"bottom2"} setClass={"button activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
+    <Button id={"bottom3"}  setClass={"button"}  title={"SLOW"} handleClick={ () => this.changeSpd(200, "bottom3") }></Button>
+    <Button id={"bottom4"} setClass={"button activebut"}  title={"MEDIUM"} handleClick={ () => this.changeSpd(100, "bottom4") }></Button>
+    <Button id={"bottom5"}  setClass={"button"}  title={"FAST"} handleClick={ () => this.changeSpd(40, "bottom5") }></Button>
     </div>
     </div>
     </div>
@@ -360,9 +359,9 @@ class Upperpad_ extends Component{
 
        <div id="upperpad">
     <div id="upperbut">
-     <Button id={"top1"} setClass={"activebut"} title={"Run"}></Button>
-      <Button id={"top2"}  setClass={""} title={"Pause"}></Button>
-        <Button id={"top3"} setClass={""} title={"Clear"}></Button>
+     <Button id={"top1"} setClass={"button activebut"} title={"Run"}></Button>
+      <Button id={"top2"}  setClass={"button "} title={"Pause"}></Button>
+        <Button id={"top3"} setClass={"button"} title={"Clear"}></Button>
     </div>
      <Counter genCount={ this.props.Count }></Counter>
     </div>
@@ -401,7 +400,7 @@ const App =()=> (
 
 // reducers
 
-const genCountReducer=(state=1, action)=>{
+const genCountReducer=(state=0, action)=>{
 
   switch(action.type){
     case 'nextgrid':
@@ -414,11 +413,15 @@ const genCountReducer=(state=1, action)=>{
 
     case 'changespeed':
       
-      return 1;
+      return 0;
 
     case 'changegridsize':
       
-      return 1;
+      return 0;
+
+    case 'randomgrid':
+      
+      return 0;
 
     default:
       return state;
