@@ -36,14 +36,12 @@ const EmptyGrid=(height, width)=>{
 };
 
 const RandomGrid=(height, width)=>{
-  let count=0;
   let grid=[];
   for(var i=0; i<height; i++){
     var row=[];
     for(var j=0; j<width; j++){
       let randomStatus= Math.random() >0.80;
       if(randomStatus){
-       count++;
        row.push({
         status: 1,
         newBorn: 1
@@ -143,15 +141,15 @@ function toggleAlive(x,y) {
   };
 }
 
-function makeRandomGrid() {
+function initRandGrid() {
   return {
-    type: 'MAKE_RANDOM'
+    type: 'randomgrid'
   };
 }
 
-function tick() {
+function getNextGrid() {
   return {
-    type: 'TICK'
+    type: 'nextgrid'
   };
 }
 
@@ -246,8 +244,8 @@ const Board = connect(mapStateToProps_1)(Board_);
 
 class Upperpad_ extends Component {
   componentDidMount(){
-    this.props.random();
-    let interval = setInterval(this.props.tick,100);
+    this.props.initGrid();
+    let interval = setInterval(this.props.nextGrid,100);
   }
   render(){
     
@@ -289,8 +287,8 @@ const mapStateToProps_2 = ({playState, counter}) => {
 
 const mapDispatchToProps_2 = (dispatch) => {
   return {
-    random: () => dispatch(makeRandomGrid()),
-    tick: () => dispatch(tick()),
+    initGrid: () => dispatch(initRandGrid()),
+    nextGrid: () => dispatch(getNextGrid()),
     startPlaying: (timerId) => dispatch(startPlaying(timerId)),
     stopPlaying: () => dispatch(stopPlaying()),
     clear: () => dispatch(clear())
@@ -309,10 +307,6 @@ class Lowerpad_ extends Component{
    
   }
    
-  componentDidMount(){
-     this.props.initrandgrid();
-     setInterval(this.props.nextGrid, 1000);
-  }
 
   render(){
 
@@ -420,12 +414,12 @@ const boardReducer = (state = initialGrid, action) => {
      
       return RandomGrid(GRID_HEIGHT, GRID_WIDTH);
 
-    case 'MAKE_RANDOM':
+    case 'randomgrid':
       //true param requests a random grid from makeGrid method
       return RandomGrid(GRID_HEIGHT,GRID_WIDTH);
     case 'CLEAR':
       return EmptyGrid(GRID_HEIGHT,GRID_WIDTH);
-    case 'TICK':
+    case 'nextgrid':
       return NextGrid(state.slice(0));
     default:
       return state;
@@ -434,11 +428,11 @@ const boardReducer = (state = initialGrid, action) => {
 
 const generationCounterReducer = (state = 0, action) => {
   switch(action.type){
-    case 'TICK':
+    case 'nextgrid':
       return state + 1;
     case 'CLEAR':
       return 0;
-    case 'MAKE_RANDOM':
+    case 'randomgrid':
       return 0;
 
     case 'changespeed':
