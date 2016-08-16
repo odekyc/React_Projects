@@ -360,13 +360,14 @@ class Lowerpad_ extends Component{
   }
 
   changeSpd(newTimeInt, spdButClicked){
+    $('#'+actvspdbut).removeClass('activebut');
+    $('#'+spdButClicked).addClass('activebut');
+    actvspdbut=spdButClicked;
     clearInterval(runInt);
     interval= Number(newTimeInt);
     alert(interval);
     runInt = setInterval(this.props.nextGrid,interval);
-    $('#'+actvspdbut).removeClass('activebut');
-    $('#'+spdButClicked).addClass('activebut');
-    actvspdbut=spdButClicked;
+  
 
   }
 
