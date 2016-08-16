@@ -1,44 +1,64 @@
+
+html{
+  background: #b3daff;
+}
+
+body{
+  display: inline;
+ 
+}
+
 #gameboard{
     position: absolute;
     top: 70px;
-    left: 165px;
-	  background-color: #9999ff;
-	  height: 630px;
-	 width: 960px;
+    left: 135px;
+    background: #9999ff;
+    height: 890px;
+   width: 1180px;
    border-radius: 12px;
    box-shadow: 0px 16px 30px 0px yellow;
 }
 
 
-.alive{
-
-   background-color: #ace600;
-
+td {
+  border: 1px solid white;
+  height: 15px;
+  width: 15px;
+ 
+  background: #DDD;
+  }
 }
 
-.newborn{
+/* Width to match app grid size */
 
-  background-color: #ffff99;
+
+/* Grid styles */
+table {
+  margin: 0 0;
 }
+
+.alive {
+  background: #99e600;
+}
+
+.newborn {
+  background: #ffffb3
+}
+
+/* Controls and button styles */
+
+
+
+
 
 #grid{
   position: absolute;
-  background-color:  #e6e6e6;
-  color: #ffff66;
   top: 30px;
   left: 30px;
-  vertical-align: middle;
 }
 
-html{
-	background-color: #b3daff;
-	  background: #b3daff; /* For browsers that do not support gradients */
-  
-}
 
-body{
-	display: inline;
-}
+
 
 .activebut{
    background-color: green;
@@ -49,7 +69,7 @@ body{
 
   position:absolute;
   background-color: yellow;
-  top: 880px;
+  top: 930px;
   height: 140px;
   width: 700px;
   left: 370px;
@@ -90,9 +110,9 @@ button{
 
 td {
   border: 1px solid white;
-  height: 18px;
-  width: 18px;
-
+  height: 1em;
+  width: 1em;
+  background: #DDD;
 }
 
 #upperbut{
@@ -183,3 +203,4 @@ td {
   
 
 }
+

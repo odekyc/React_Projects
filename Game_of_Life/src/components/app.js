@@ -1,14 +1,10 @@
 import React from 'react';
 import { Component } from 'react';
-import {combineReducers} from 'redux';
 
-var classNames=require('classnames');
 
 const GridHeight=50;
 
 const GridWidth=70;
-
-const intervalTime=100;
 
 // action functions
 
@@ -20,65 +16,14 @@ function IncreCounter(){
   };
 }
 
-function ClearGrid(){
-  return{
-
-    type: 'cleargrid'
-  };
-}
-
-function initRandGrid(){
-  return{
-    type: 'randomgrid'
-  };
-}
-
-function getNextGrid(){
-  return{
-    type: 'nextgrid'
-  };
-}
-
-function changeSpeed(newInterval){
-  return{
-    type: 'changespeed',
-    payload: newInterval
-  };
-}
-
-function changeGridSize(newDimension){
-  return{
-    type:'changegridsize',
-    payload: newDimension
-  };
-}
-
-function returnGrid(){
-  return{
-    type: 'returngrid'
-  };
-}
-
 // reducers
 
-const genCountReducer=(state=1, action)=>{
+const genCountReducer=(state=0, action)=>{
 
   switch(action.type){
     case 'increcounter':
 
       return state+1;
-
-    case 'cleargrid':
-      
-      return 0;
-
-    case 'changespeed':
-      
-      return 1;
-
-    case 'changegridsize':
-      
-      return 1;
 
     default:
       return state;
@@ -86,35 +31,6 @@ const genCountReducer=(state=1, action)=>{
 }
 
 
-const makeGridReducer=(state=RandomGrid(GridHeight, GridWidth), action) =>{
-
-  switch(action.type){
-    case 'cleargrid':
-      return EmptyGrid(GridHeight, GridWidth);
-
-    case 'randomgrid':
-      
-      return RandomGrid(GridHeight, GridWidth);
-
-    case 'nextgrid':
-
-      return NextGrid(state);
-
-    case 'returngrid':
-
-      return state;
-
-    default:
-      return state;
-  }
-}
-
-//combine reducers
-
-const reducers=combineReducers({
-  genCount: genCountReducer,
-  makeGrid: makeGridReducer,
-});
 
 //global functions that make empty grid, random grid, advance grid
 
@@ -145,7 +61,7 @@ const RandomGrid=(height, width)=>{
        count++;
       }
       row.push({
-        isAlive: Number(randomStatus),
+        isAlive: randomStatus,
         newBorn: 0
       });
     }
@@ -157,83 +73,20 @@ const RandomGrid=(height, width)=>{
 
 
 const NextGrid=(currentGrid)=>{
-  let newGrid=[];
-  let aliveNeighbors;
+  let grid=[];
+  let aliveNeigtbors;
   let neighborCounts=function(x,y){
-      var neighborsAlive=0;
-      var Xminus1=x-1;
-      var Yminus1=y-1;
-      var Xplus1=x+1;
-      var Yplus1=y+1;
       
 
-      if(Xminus1<0){
-        Xminus1=GridWidth-1;
-      }
-
-      if(Yminus1<0){
-        Yminus1=GridHeight-1;
-      }
-
-      if(Xplus1===GridWidth){
-        Xplus1=0;
-      }
-     
-      if(Yplus1===GridHeight){
-        Yplus1=0;
-      }
-      
-      neighborsAlive+=currentGrid[Yminus1][Xminus1].isAlive;
-      neighborsAlive+=currentGrid[Yminus1][x].isAlive;
-      neighborsAlive+=currentGrid[Yminus1][Xplus1].isAlive;
-      neighborsAlive+=currentGrid[y][Xminus1].isAlive;
-      neighborsAlive+=currentGrid[y][Xplus1].isAlive;
-      neighborsAlive+=currentGrid[Yplus1][Xminus1].isAlive;
-      neighborsAlive+=currentGrid[Yplus1][x].isAlive;
-      neighborsAlive+=currentGrid[Yplus1][Xplus1].isAlive;
-
-
-    return neighborsAlive;
-     
   };
 
   for(var i=0; i<currentGrid.length; i++){
      var row=[];
      for(var j=0; j<currentGrid[0].length; j++){
-        aliveNeighbors=neighborCounts(i,j);
-        if(currentGrid[i][j].isAlive){
-          if((aliveNeighbors==2)||(aliveNeighbors==3)){
-            row.push({
-              isAlive: 1,
-              newBorn: 0
-            });
-          }
-          else{
-            row.push({
-              isAlive: 0,
-              newBorn: 0
-            });
-          }
-        }
-        else if(!currentGrid[i][j].isAlive){
-          if(aliveNeighbors==3){
-            row.push({
-              isAlive: 1,
-              newBorn: 1
-            });
-          }
-          else{
-            row.push({
-              isAlive: 0,
-              newBorn: 0
-            });
-          }
-        }
+        aliveNeigtbors=neighborCounts(i,j);
      }
-     newGrid.push(row);
   }
 
-  return newGrid;
 }
 
 
@@ -247,11 +100,7 @@ const Button=({id, title, handleClick})=>(
 );
 
 const Cell=({newBorn, isAlive, handleClick})=>(
-
-     <td className={classNames({'cell': true, 
-      'alive': isAlive,
-      'newborn': newBorn,
-      'dead': !isAlive && !newBorn})}></td>
+     <div className='cell'></div>
 );
 
 const Counter=({genCount})=>(
@@ -264,46 +113,147 @@ const Counter=({genCount})=>(
 class Grid extends Component {
 
 	render(){
-    let newRandGrid=RandomGrid(50,70);
-    var rows=newRandGrid.map(function(row, i){
-        var entry=row.map(function(element, i){
-          return(
-            <Cell newBorn={element.newBorn} isAlive={element.isAlive} />
-           );
-        });
-        return(
-          <tr>{entry}</tr>
-        );
-    })
+    let newEmptyGrid=EmptyGrid();
 
 		return (
-        <table id="grid">
-         <tbody>
-            {rows}
-         </tbody>
-         </table>
+        <div id="grid">
+          <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+               <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+           <Cell/>
+          <Cell/>
+          <Cell/>
+         </div>
 	);
-	}   
-}
+	}
 
+    
+}
 
 class Gameboard_ extends Component {
 
 	render(){
 
 		return (
-         <center>
+    
          <div id="gameboard" >
-           
-           <Grid />
 
+           <Grid />
           </div>
-          </center>
 	);
 	}
+
+
 }
 
-const Gameboard mapStateToProp1=
 class Upperpad_ extends Component{
 
 	render(){
@@ -316,7 +266,7 @@ class Upperpad_ extends Component{
       <Button id={"top2"} title={"Pause"}></Button>
         <Button id={"top3"} title={"Clear"}></Button>
     </div>
-     <Counter genCount={1}></Counter>
+     <Counter genCount={900000}></Counter>
     </div>
 
      );
