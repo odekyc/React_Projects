@@ -126,7 +126,6 @@ function changeSpeed(){
 }
 
 function changeGridSize(newDimension){
-  alert(newDimension);
   return{
     type:'changegridsize',
     payload: newDimension
@@ -167,9 +166,9 @@ function stopPlaying(timerId) {
   };
 }
 
-function clear() {
+function clearGrid() {
   return {
-    type: 'CLEAR',
+    type: 'cleargrid',
   };
 }
 
@@ -245,7 +244,7 @@ const Board = connect(mapStateToProps_1)(Board_);
 class Upperpad_ extends Component {
   componentDidMount(){
     this.props.initGrid();
-    let interval = setInterval(this.props.nextGrid,100);
+    runInt = setInterval(this.props.nextGrid,100);
   }
   render(){
     
@@ -262,22 +261,22 @@ class Upperpad_ extends Component {
 
      );
   }
-  togglePlay(){
-    if (this.props.playState.isRunning) {
-      clearInterval(this.props.playState.timerId);
-      this.props.stopPlaying();
-    } else {
-      let interval = setInterval(this.props.tick,100);
-      this.props.startPlaying(interval);
-    }
-  }
-  clear(){
-    if (this.props.playState.isRunning) {
-      clearInterval(this.props.playState.timerId);
-      this.props.stopPlaying();
-    }
-      this.props.clear();
-  }
+  // togglePlay(){
+  //   if (this.props.playState.isRunning) {
+  //     clearInterval(this.props.playState.timerId);
+  //     this.props.stopPlaying();
+  //   } else {
+  //     let interval = setInterval(this.props.nextGrid,100);
+  //     this.props.startPlaying(interval);
+  //   }
+  // }
+  // clear(){
+  //   if (this.props.playState.isRunning) {
+  //     clearInterval(this.props.playState.timerId);
+  //     this.props.stopPlaying();
+  //   }
+  //     this.props.clearGrid();
+  // }
 }
 
 
@@ -291,7 +290,7 @@ const mapDispatchToProps_2 = (dispatch) => {
     nextGrid: () => dispatch(getNextGrid()),
     startPlaying: (timerId) => dispatch(startPlaying(timerId)),
     stopPlaying: () => dispatch(stopPlaying()),
-    clear: () => dispatch(clear())
+    clearGrid: () => dispatch(clearGrid())
   };
 }
 
@@ -354,7 +353,6 @@ class Lowerpad_ extends Component{
       $('#gameboard').css('height', '890px');
       $('#gameboard').css('left', '135px');
       $('#lowerpad').css('top','930px');
-      alert(actvbottombut);
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom2').addClass('activebut');
       actvbottombut="bottom2";
@@ -417,7 +415,7 @@ const boardReducer = (state = initialGrid, action) => {
     case 'randomgrid':
       //true param requests a random grid from makeGrid method
       return RandomGrid(GRID_HEIGHT,GRID_WIDTH);
-    case 'CLEAR':
+    case 'cleargrid':
       return EmptyGrid(GRID_HEIGHT,GRID_WIDTH);
     case 'nextgrid':
       return NextGrid(state.slice(0));
@@ -430,7 +428,7 @@ const generationCounterReducer = (state = 0, action) => {
   switch(action.type){
     case 'nextgrid':
       return state + 1;
-    case 'CLEAR':
+    case 'cleargrid':
       return 0;
     case 'randomgrid':
       return 0;
