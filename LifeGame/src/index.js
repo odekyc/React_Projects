@@ -11,6 +11,7 @@ var actvspdbut="bottom4";
 var actvstate="top1";
 var running=0;
 var runInt;
+var gridCleared=false;
 
 //REACT & REDUX LIBRARIES SET UP
 const { Component } = React;
@@ -133,13 +134,6 @@ function changeGridSize(newDimension){
   };
 }
 
-function toggleAlive(x,y) {
-  return {
-    type: 'TOGGLE_ALIVE',
-    x,
-    y
-  };
-}
 
 function initRandGrid() {
   return {
@@ -253,31 +247,44 @@ class Upperpad_ extends Component {
 
        <div id="upperpad">
     <div id="upperbut">
-     <Button id={"top1"} setClass={"button activebut"} title={"Run"}></Button>
-      <Button id={"top2"}  setClass={"button "} title={"Pause"}></Button>
-        <Button id={"top3"} setClass={"button"} title={"Clear"}></Button>
+     <Button id={"top1"} setClass={"button activebut"} handleClick={ () => this.Run() } title={"Run"}></Button>
+      <Button id={"top2"}  setClass={"button "} handleClick={ () => this.Pause() } title={"Pause"}></Button>
+        <Button id={"top3"} setClass={"button"} handleClick={ () => this.Clear() } title={"Clear"}></Button>
     </div>
      <Counter genCount={ this.props.Count }></Counter>
     </div>
 
      );
   }
-  // togglePlay(){
-  //   if (this.props.playState.isRunning) {
-  //     clearInterval(this.props.playState.timerId);
-  //     this.props.stopPlaying();
-  //   } else {
-  //     let interval = setInterval(this.props.nextGrid,100);
-  //     this.props.startPlaying(interval);
-  //   }
-  // }
-  // clear(){
-  //   if (this.props.playState.isRunning) {
-  //     clearInterval(this.props.playState.timerId);
-  //     this.props.stopPlaying();
-  //   }
-  //     this.props.clearGrid();
-  // }
+
+  Run(){
+    $('#'+actvstate).removeClass('activebut');
+    $('#top1').addClass('activebut');
+    actvstate="top1";
+    clearInterval(runInt);
+    if(gridCleared){
+      this.props.initGrid();
+    }
+    gridCleared=false;
+    runInt=setInterval(this.props.nextGrid, interval);
+  }
+
+  Pause(){
+    $('#'+actvstate).removeClass('activebut');
+    $('#top2').addClass('activebut');
+    actvstate="top2";
+    clearInterval(runInt);
+  }
+
+  Clear(){
+    $('#'+actvstate).removeClass('activebut');
+    $('#top3').addClass('activebut');
+    actvstate="top3";
+    gridCleared=true;
+    clearInterval(runInt);
+    this.props.clearGrid();
+  }
+
 }
 
 
@@ -376,9 +383,7 @@ class Lowerpad_ extends Component{
 const mapDispatchToProps_3=(dispatch) =>{
   return{
     changedimension: (newdim) => dispatch(changeGridSize(newdim)),
-    initGrid: () => dispatch(initRandGrid()),
     nextGrid: () => dispatch(getNextGrid()),
-    clearGrid: () => dispatch(clearGrid()),
     changespd: () => dispatch( changeSpeed())
   };
 }
@@ -401,7 +406,7 @@ const App = () => (
 //REDUCERS
 
 const initialGrid = EmptyGrid(GRID_HEIGHT,GRID_WIDTH);
-const boardReducer = (state = initialGrid, action) => {
+const makeGridReducer = (state = initialGrid, action) => {
   switch(action.type){
    
 
@@ -428,7 +433,7 @@ const boardReducer = (state = initialGrid, action) => {
   }
 };
 
-const generationCounterReducer = (state = 0, action) => {
+const genCounterReducer = (state = 0, action) => {
   switch(action.type){
     case 'nextgrid':
       return state + 1;
@@ -449,33 +454,13 @@ const generationCounterReducer = (state = 0, action) => {
   }
 };
 
-const playInitialState = {
-  timerId: null,
-  isRunning: false
-};
 
-const playStatusReducer = (state = playInitialState, action) => {
-  switch(action.type){
-    case 'PLAY':
-      return {
-        timerId: action.timerId,
-        isRunning: true
-      };
-    case 'STOP':
-      return {
-        timerId: null,
-        isRuninng: false
-      };
-    default:
-      return state;
-  }
-};
+
 
 //COMBINE REDUCERS
 const reducers = combineReducers({
-  board: boardReducer,
-  playState: playStatusReducer,
-  counter: generationCounterReducer,
+  board: makeGridReducer,
+  counter: genCounterReducer,
 });
 
 //APPLICATION WRAPPER - wrap the app with the redux store and render to the DOM
