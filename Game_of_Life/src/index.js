@@ -69,20 +69,36 @@ const NextGrid = function(grid){
      let calculateNeighbours = function(x,y) {
        //since the world is toroidal: if the cell is at the edge of the grid we
        //will reference the cell on the opposite edge
-       let topRow = x-1 < 0 ? (gridHeight - 1) : x-1;
-       let bottomRow = (x+1 === gridHeight) ? 0 : x+1;
-       let leftColumn = y-1 < 0 ? (gridWidth - 1) : y-1;
-       let rightColumn = (y+1 === gridWidth) ? 0 : y+1;
+       let xMinus1=x-1;
+       let yMinus1=y-1;
+       let xPlus1=x+1;
+       let yPlus1=y+1;
+
+       if(xMinus1<0){
+        xMinus1=gridWidth-1;
+       }
+
+       if(yMinus1<0){
+        yMinus1=gridHeight-1;
+       }
+
+      if(xPlus1==gridWidth){
+        xPlus1=0;
+       }
+
+       if(yPlus1==gridHeight){
+        yPlus1=0;
+       }
 
        let total = 0;
-       total+= grid[topRow][leftColumn].isAlive;
-       total+= grid[topRow][y].isAlive;
-       total+= grid[topRow][rightColumn].isAlive;
-       total+= grid[x][leftColumn].isAlive;
-       total+= grid[x][rightColumn].isAlive;
-       total+= grid[bottomRow][leftColumn].isAlive;
-       total+= grid[bottomRow][y].isAlive;
-       total+= grid[bottomRow][rightColumn].isAlive;
+       total+= grid[yMinus1][xMinus1].isAlive;
+       total+= grid[y][xMinus1].isAlive;
+       total+= grid[yPlus1][xMinus1].isAlive;
+       total+= grid[yMinus1][x].isAlive;
+       total+= grid[yPlus1][x].isAlive;
+       total+= grid[yMinus1][xPlus1].isAlive;
+       total+= grid[y][xPlus1].isAlive;
+       total+= grid[yPlus1][xPlus1].isAlive;
 
        return total;
      };
@@ -93,14 +109,14 @@ const NextGrid = function(grid){
        let row = [];
        for (let j = 0; j < gridWidth; j++) {
          let cellIsAlive = grid[i][j].isAlive;
-         let neighbours = calculateNeighbours(i,j);
+         let neighbours = calculateNeighbours(j,i);
            if (cellIsAlive) {
-                if (neighbours < 2) {
-                    row.push({ isAlive: 0, newBorn:0 });
-                } else if (neighbours > 3){
-                    row.push({ isAlive: 0 , newBorn:0});
+                if (neighbours == 2) {
+                    row.push({ isAlive: 1, newBorn:0 });
+                } else if (neighbours == 3){
+                    row.push({ isAlive: 1 , newBorn:0});
                 } else {
-                    row.push({ isAlive: 1 , newBorn: 0});
+                    row.push({ isAlive: 0 , newBorn: 0});
                 }
             }
             if (!cellIsAlive) {
