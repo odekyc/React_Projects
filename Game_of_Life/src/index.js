@@ -147,19 +147,6 @@ function getNextGrid() {
   };
 }
 
-function startPlaying(timerId) {
-  return {
-    type: 'PLAY',
-    timerId
-  };
-}
-
-function stopPlaying(timerId) {
-  return {
-    type: 'STOP',
-    timerId
-  };
-}
 
 function clearGrid() {
   return {
