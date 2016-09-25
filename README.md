@@ -1,2 +1,3 @@
 # React_Projects
-react
+
+All the projects done using Javascript and ReactJS(Babel+ES6)
