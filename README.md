@@ -1,4 +1,3 @@
-<<<<<<< d5e7139a3697569d7bada78cec935e13efcf6a0a
 # React_Projects
 
 All the projects done using Javascript and ReactJS ( Babel+ES6 ).
