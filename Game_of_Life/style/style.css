@@ -9,9 +9,9 @@ body{
 }
 
 #gameboard{
-    position: absolute;
+    position: relative;
     top: 70px;
-    left: 135px;
+    margin: auto;
     background: #9999ff;
     height: 890px;
    width: 1180px;
@@ -67,12 +67,12 @@ table {
 
 #lowerpad{
 
-  position:absolute;
+  position:relative;
   background-color: yellow;
-  top: 930px;
+  top: 70px;
   height: 140px;
   width: 700px;
-  left: 370px;
+  margin:auto;
   border-radius: 12px;
   font-size: 180%;
 
@@ -131,13 +131,13 @@ td {
 
 #upperpad{
   
-  position:absolute;
-  top: 10px;
+  position:relative;
+  top: 95px;
   background-color: #bfff00;
 
   height: 90px;
   width: 700px;
-  left: 370px;
+  margin: auto;
   border-radius: 12px;
   font-size: 180%;
 }
