@@ -51,21 +51,21 @@
 /* 1 */
 /***/ function(module, exports) {
 
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	//Game of Life React + Redux Implementation
 	//You may prefer to view the source here: 
 	//https://github.com/thepeted/game-of-life-redux
 
 	//CONSTANTS
-	"use strict";
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	var GRID_HEIGHT = 50;
 	var GRID_WIDTH = 70;
 	var interval = 120;
@@ -77,17 +77,17 @@
 	var gridCleared = false;
 
 	//REACT & REDUX LIBRARIES SET UP
-	var _React = React;
-	var Component = _React.Component;
-	var _Redux = Redux;
-	var createStore = _Redux.createStore;
-	var applyMiddleware = _Redux.applyMiddleware;
-	var _ReactRedux = ReactRedux;
-	var Provider = _ReactRedux.Provider;
-	var _ReactRedux2 = ReactRedux;
-	var connect = _ReactRedux2.connect;
-	var _Redux2 = Redux;
-	var combineReducers = _Redux2.combineReducers;
+	var _React = React,
+	    Component = _React.Component;
+	var _Redux = Redux,
+	    createStore = _Redux.createStore,
+	    applyMiddleware = _Redux.applyMiddleware;
+	var _ReactRedux = ReactRedux,
+	    Provider = _ReactRedux.Provider;
+	var _ReactRedux2 = ReactRedux,
+	    connect = _ReactRedux2.connect;
+	var _Redux2 = Redux,
+	    combineReducers = _Redux2.combineReducers;
 
 	//HELPERS - generate the gamestate by constructing 2d arrays
 
@@ -238,10 +238,10 @@
 	//COMPONENTS - 'dumb' functional components only receive props.  They don't need to dispatch actions nor to they care about the overall state of the app
 
 	var Button = function Button(_ref) {
-	  var id = _ref.id;
-	  var title = _ref.title;
-	  var setClass = _ref.setClass;
-	  var handleClick = _ref.handleClick;
+	  var id = _ref.id,
+	      title = _ref.title,
+	      setClass = _ref.setClass,
+	      handleClick = _ref.handleClick;
 	  return React.createElement(
 	    "button",
 	    { id: id, className: setClass, onClick: handleClick },
@@ -250,9 +250,9 @@
 	};
 
 	var Cell = function Cell(_ref2) {
-	  var alive = _ref2.alive;
-	  var newBorn = _ref2.newBorn;
-	  var handleClick = _ref2.handleClick;
+	  var alive = _ref2.alive,
+	      newBorn = _ref2.newBorn,
+	      handleClick = _ref2.handleClick;
 	  return React.createElement("td", {
 	    onClick: handleClick,
 	    className: (alive ? 'alive' : '') + " " + (newBorn ? 'newborn' : '')
@@ -270,16 +270,14 @@
 	  );
 	};
 
-	var Grid = (function (_Component) {
+	var Grid = function (_Component) {
 	  _inherits(Grid, _Component);
 
 	  function Grid() {
 	    _classCallCheck(this, Grid);
 
-	    _get(Object.getPrototypeOf(Grid.prototype), "constructor", this).apply(this, arguments);
+	    return _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).apply(this, arguments));
 	  }
-
-	  //CONTAINERS - define a React component and use React-Redux to connect up to the Redux store
 
 	  _createClass(Grid, [{
 	    key: "render",
@@ -308,15 +306,17 @@
 	  }]);
 
 	  return Grid;
-	})(Component);
+	}(Component);
 
-	var Board_ = (function (_Component2) {
+	//CONTAINERS - define a React component and use React-Redux to connect up to the Redux store
+
+	var Board_ = function (_Component2) {
 	  _inherits(Board_, _Component2);
 
 	  function Board_() {
 	    _classCallCheck(this, Board_);
 
-	    _get(Object.getPrototypeOf(Board_.prototype), "constructor", this).apply(this, arguments);
+	    return _possibleConstructorReturn(this, (Board_.__proto__ || Object.getPrototypeOf(Board_)).apply(this, arguments));
 	  }
 
 	  _createClass(Board_, [{
@@ -335,7 +335,7 @@
 	  }]);
 
 	  return Board_;
-	})(Component);
+	}(Component);
 
 	var mapStateToProps_1 = function mapStateToProps_1(_ref4) {
 	  var board = _ref4.board;
@@ -347,13 +347,13 @@
 
 	//
 
-	var Upperpad_ = (function (_Component3) {
+	var Upperpad_ = function (_Component3) {
 	  _inherits(Upperpad_, _Component3);
 
 	  function Upperpad_() {
 	    _classCallCheck(this, Upperpad_);
 
-	    _get(Object.getPrototypeOf(Upperpad_.prototype), "constructor", this).apply(this, arguments);
+	    return _possibleConstructorReturn(this, (Upperpad_.__proto__ || Object.getPrototypeOf(Upperpad_)).apply(this, arguments));
 	  }
 
 	  _createClass(Upperpad_, [{
@@ -365,7 +365,7 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this = this;
+	      var _this4 = this;
 
 	      return React.createElement(
 	        "div",
@@ -373,14 +373,14 @@
 	        React.createElement(
 	          "div",
 	          { id: "upperbut" },
-	          React.createElement(Button, { id: "top1", setClass: "button activebut", handleClick: function () {
-	              return _this.Run();
+	          React.createElement(Button, { id: "top1", setClass: "button activebut", handleClick: function handleClick() {
+	              return _this4.Run();
 	            }, title: "Run" }),
-	          React.createElement(Button, { id: "top2", setClass: "button ", handleClick: function () {
-	              return _this.Pause();
+	          React.createElement(Button, { id: "top2", setClass: "button ", handleClick: function handleClick() {
+	              return _this4.Pause();
 	            }, title: "Pause" }),
-	          React.createElement(Button, { id: "top3", setClass: "button", handleClick: function () {
-	              return _this.Clear();
+	          React.createElement(Button, { id: "top3", setClass: "button", handleClick: function handleClick() {
+	              return _this4.Clear();
 	            }, title: "Clear" })
 	        ),
 	        React.createElement(Counter, { genCount: this.props.Count })
@@ -420,11 +420,11 @@
 	  }]);
 
 	  return Upperpad_;
-	})(Component);
+	}(Component);
 
 	var mapStateToProps_2 = function mapStateToProps_2(_ref5) {
-	  var playState = _ref5.playState;
-	  var counter = _ref5.counter;
+	  var playState = _ref5.playState,
+	      counter = _ref5.counter;
 
 	  return { playState: playState, Count: counter };
 	};
@@ -437,7 +437,7 @@
 	    nextGrid: function nextGrid() {
 	      return dispatch(getNextGrid());
 	    },
-	    startPlaying: (function (_startPlaying) {
+	    startPlaying: function (_startPlaying) {
 	      function startPlaying(_x) {
 	        return _startPlaying.apply(this, arguments);
 	      }
@@ -447,10 +447,10 @@
 	      };
 
 	      return startPlaying;
-	    })(function (timerId) {
+	    }(function (timerId) {
 	      return dispatch(startPlaying(timerId));
 	    }),
-	    stopPlaying: (function (_stopPlaying) {
+	    stopPlaying: function (_stopPlaying) {
 	      function stopPlaying() {
 	        return _stopPlaying.apply(this, arguments);
 	      }
@@ -460,7 +460,7 @@
 	      };
 
 	      return stopPlaying;
-	    })(function () {
+	    }(function () {
 	      return dispatch(stopPlaying());
 	    }),
 	    clearGrid: function clearGrid() {
@@ -473,19 +473,19 @@
 
 	//
 
-	var Lowerpad_ = (function (_Component4) {
+	var Lowerpad_ = function (_Component4) {
 	  _inherits(Lowerpad_, _Component4);
 
 	  function Lowerpad_() {
 	    _classCallCheck(this, Lowerpad_);
 
-	    _get(Object.getPrototypeOf(Lowerpad_.prototype), "constructor", this).call(this);
+	    return _possibleConstructorReturn(this, (Lowerpad_.__proto__ || Object.getPrototypeOf(Lowerpad_)).call(this));
 	  }
 
 	  _createClass(Lowerpad_, [{
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
+	      var _this6 = this;
 
 	      return React.createElement(
 	        "div",
@@ -507,20 +507,20 @@
 	          React.createElement(
 	            "div",
 	            { id: "lowerbuts" },
-	            React.createElement(Button, { id: "bottom1", setClass: "button", handleClick: function () {
-	                return _this2.changeDimSmall();
+	            React.createElement(Button, { id: "bottom1", setClass: "button", handleClick: function handleClick() {
+	                return _this6.changeDimSmall();
 	              }, title: "Size:50X30" }),
-	            React.createElement(Button, { id: "bottom2", setClass: "button activebut", handleClick: function () {
-	                return _this2.changeDimMed();
+	            React.createElement(Button, { id: "bottom2", setClass: "button activebut", handleClick: function handleClick() {
+	                return _this6.changeDimMed();
 	              }, title: "Size:70X50" }),
-	            React.createElement(Button, { id: "bottom3", setClass: "button", title: "SLOW", handleClick: function () {
-	                return _this2.changeSpd(200, "bottom3");
+	            React.createElement(Button, { id: "bottom3", setClass: "button", title: "SLOW", handleClick: function handleClick() {
+	                return _this6.changeSpd(200, "bottom3");
 	              } }),
-	            React.createElement(Button, { id: "bottom4", setClass: "button activebut", title: "MEDIUM", handleClick: function () {
-	                return _this2.changeSpd(100, "bottom4");
+	            React.createElement(Button, { id: "bottom4", setClass: "button activebut", title: "MEDIUM", handleClick: function handleClick() {
+	                return _this6.changeSpd(100, "bottom4");
 	              } }),
-	            React.createElement(Button, { id: "bottom5", setClass: "button", title: "FAST", handleClick: function () {
-	                return _this2.changeSpd(40, "bottom5");
+	            React.createElement(Button, { id: "bottom5", setClass: "button", title: "FAST", handleClick: function handleClick() {
+	                return _this6.changeSpd(40, "bottom5");
 	              } })
 	          )
 	        )
@@ -534,8 +534,7 @@
 	      $('td').css("width", "18px");
 	      $('#gameboard').css('width', '960px');
 	      $('#gameboard').css('height', '630px');
-	      $('#gameboard').css('left', '240px');
-	      $('#lowerpad').css('top', '670px');
+	      $('#lowerpad').css('top', '70px');
 	      $('#' + actvbottombut).removeClass('activebut');
 	      $('#bottom1').addClass('activebut');
 	      actvbottombut = "bottom1";
@@ -548,8 +547,7 @@
 	      $('td').css("width", "15px");
 	      $('#gameboard').css('width', '1180px');
 	      $('#gameboard').css('height', '890px');
-	      $('#gameboard').css('left', '135px');
-	      $('#lowerpad').css('top', '930px');
+	      $('#lowerpad').css('top', '70px');
 	      $('#' + actvbottombut).removeClass('activebut');
 	      $('#bottom2').addClass('activebut');
 	      actvbottombut = "bottom2";
@@ -567,7 +565,7 @@
 	  }]);
 
 	  return Lowerpad_;
-	})(Component);
+	}(Component);
 
 	var mapDispatchToProps_3 = function mapDispatchToProps_3(dispatch) {
 	  return {
@@ -600,8 +598,9 @@
 	//REDUCERS
 
 	var initialGrid = EmptyGrid(GRID_HEIGHT, GRID_WIDTH);
-	var makeGridReducer = function makeGridReducer(state, action) {
-	  if (state === undefined) state = initialGrid;
+	var makeGridReducer = function makeGridReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialGrid;
+	  var action = arguments[1];
 
 	  switch (action.type) {
 
@@ -628,8 +627,9 @@
 	  }
 	};
 
-	var genCounterReducer = function genCounterReducer(state, action) {
-	  if (state === undefined) state = 0;
+	var genCounterReducer = function genCounterReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	  var action = arguments[1];
 
 	  switch (action.type) {
 	    case 'nextgrid':
