@@ -1,13 +1,12 @@
 #graybox{
-	position: absolute;
+	position: relative;
 	height: 140px;
 	width: 1000px;
 	background-color: #e0e0d1;
-	margin: 0 auto;
 	border-radius: 8px;
 	border: 2px solid #a3a375;
 	top: 200px;
-	left: 220px;
+	margin: auto;
 	z-index: 1;
     display: inline-block;
 
