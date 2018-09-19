@@ -23,7 +23,7 @@ class Paragraphs extends Component{
 
           <p>The rain---not the reign---in Spain.</p>
 
-           <a href="http://www.w3schools.com/html/">Herman Fassett</a> 
+           <a href="http://www.w3schools.com/html/">Learn HTML on w3schools</a> 
 
         </div>
       );
