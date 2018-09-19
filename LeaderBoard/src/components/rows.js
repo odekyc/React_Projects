@@ -22,7 +22,7 @@ export default class Rows extends Component {
      
     
 
-    <svg width="1000px" height="6320px" viewBox="0 0 300 200"> 
+    <svg width="1000px" height="4920px" viewBox="0 0 300 200"> 
      <line x1="30" x2="30" y1="-1000" y2="600" stroke="white" stroke-width="20" stroke-linecap="round" stroke-dasharray="1, 30"/>
      <line x1="120" x2="120" y1="-1000" y2="600" stroke="white" stroke-width="20" stroke-linecap="round" stroke-dasharray="1, 30"/>
 

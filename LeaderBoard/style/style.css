@@ -1,7 +1,7 @@
 html{
 	background-color: #ccf2ff;
 	display: inline-block;
-    height: 1000px;
+    height: 100%;
 }
 
 body{
@@ -14,13 +14,13 @@ body{
 .container{
 	background-color: #ccf2ff;
 	display: inline-block;  
-	height: 1000px;
+	height: 100%;
 }
 
 #board{
 	position: relative;
 	display: inline-block;
-	height: 2000px;
+	height: 100%;
 	width: 1000px;
 	margin-left: 210px;
 	background-color: white;
