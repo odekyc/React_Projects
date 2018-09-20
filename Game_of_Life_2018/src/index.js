@@ -6,7 +6,7 @@
 //CONSTANTS
 var GRID_HEIGHT = 50;
 var GRID_WIDTH = 70;
-var interval=120;
+var interval=100;
 var actvbottombut="bottom2";
 var actvspdbut="bottom4";
 var actvstate="top1";
@@ -189,7 +189,7 @@ const Cell = ({alive, newBorn, handleClick}) => (
 
 
 const Counter=({genCount})=>(
-     
+ 
      <p id="gen_count">Generation :  {genCount} </p>
 );
 
@@ -255,7 +255,7 @@ class Upperpad_ extends Component {
       <Button id={"top2"}  setClass={"button "} handleClick={ () => this.Pause() } title={"Pause"}></Button>
         <Button id={"top3"} setClass={"button"} handleClick={ () => this.Clear() } title={"Clear"}></Button>
     </div>
-     <Counter genCount={ this.props.Count }></Counter>
+     <Counter genCount={ this.props.Count>9999? 9999 : this.props.Count}></Counter>
     </div>
 
      );
@@ -333,9 +333,9 @@ class Lowerpad_ extends Component{
     <div id="lowerbuts">
     <Button id={"bottom1"}  setClass={"button"}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
     <Button id={"bottom2"} setClass={"button activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
-    <Button id={"bottom3"}  setClass={"button"}  title={"SLOW"} handleClick={ () => this.changeSpd(200, "bottom3") }></Button>
+    <Button id={"bottom3"}  setClass={"button"}  title={"SLOW"} handleClick={ () => this.changeSpd(250, "bottom3") }></Button>
     <Button id={"bottom4"} setClass={"button activebut"}  title={"MEDIUM"} handleClick={ () => this.changeSpd(100, "bottom4") }></Button>
-    <Button id={"bottom5"}  setClass={"button"}  title={"FAST"} handleClick={ () => this.changeSpd(40, "bottom5") }></Button>
+    <Button id={"bottom5"}  setClass={"button"}  title={"FAST"} handleClick={ () => this.changeSpd(20, "bottom5") }></Button>
     </div>
     </div>
     </div>
@@ -345,6 +345,9 @@ class Lowerpad_ extends Component{
   };
 
   changeDimSmall(){
+    if (actvbottombut=="bottom1"){
+        return;
+      }
     this.props.changedimension('50X30'); 
      $('td').css("height", "18px");
        $('td').css("width", "18px");
@@ -357,6 +360,9 @@ class Lowerpad_ extends Component{
   }
 
   changeDimMed(){
+      if (actvbottombut=="bottom2"){
+        return;
+      }
       this.props.changedimension('70X50'); 
       $('td').css("height", "15px");
        $('td').css("width", "15px");
@@ -369,6 +375,15 @@ class Lowerpad_ extends Component{
   }
 
   changeSpd(newTimeInt, spdButClicked){
+
+    if (actvstate=="top2" || actvstate=="top3"){
+      $('#'+actvspdbut).removeClass('activebut');
+      $('#'+spdButClicked).addClass('activebut');
+      actvspdbut=spdButClicked;
+      interval=Number(newTimeInt)
+      return 
+    }
+
     $('#'+actvspdbut).removeClass('activebut');
     $('#'+spdButClicked).addClass('activebut');
     actvspdbut=spdButClicked;
