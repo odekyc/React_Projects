@@ -12,8 +12,8 @@
 
 #left{
 	border: solid grey 0.1em;
-	height: 70%;
-	width: 45%;
+	height: 40%;
+	width: 40%;
 	border-radius: 6%;
 	display: inline-block;
 	color: grey;
@@ -23,6 +23,10 @@
 	line-height: 100%;
 	
 }
+
+
+
+
 
 
 
