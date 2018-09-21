@@ -11,18 +11,19 @@
 }
 
 #left{
-	border: solid grey 2px;
-	height: 520px;
-	width: 470px;
-	border-radius: 10px;
+	border: solid grey 0.1em;
+	height: 70%;
+	width: 45%;
+	border-radius: 6%;
 	display: inline-block;
 	color: grey;
-	margin: 9px;
-	padding: 20px;
+	margin: 2%;
+	padding: 4%;
 	font-family: Arial;
-	line-height: 10px;
+	line-height: 100%;
 	
 }
+
 
 
 
