@@ -354,8 +354,8 @@ class Lowerpad_ extends Component{
       $('#gameboard').css('width', '960px');
       $('#gameboard').css('height', '630px');
       $('#lowerpad').css('top','70px');
-      $('#lowerpad').css('left','0px');
-      $('#upperpad').css('left','0px');
+      $('#lowerpad').css('left','-36px');
+      $('#upperpad').css('left','-33px');
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom1').addClass('activebut');
       actvbottombut="bottom1";
