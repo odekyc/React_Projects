@@ -72,7 +72,8 @@ table {
   top: 70px;
   height: 140px;
   width: 700px;
-  margin:auto;
+  margin: auto;
+  left: 36px;
   border-radius: 12px;
   font-size: 180%;
 
@@ -134,7 +135,7 @@ td {
   position:relative;
   top: 95px;
   background-color: #bfff00;
-
+  left: 33px;
   height: 90px;
   width: 700px;
   margin: auto;
