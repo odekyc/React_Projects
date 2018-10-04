@@ -27,7 +27,8 @@
     "react-addons-test-utils": "^0.14.7",
     "redux-devtools": "^3.3.1",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "^1.14.0",
+    "express": "^4.16.3"
   },
   "dependencies": {
     "babel": "^6.23.0",
