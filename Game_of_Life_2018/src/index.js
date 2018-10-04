@@ -353,9 +353,8 @@ class Lowerpad_ extends Component{
        $('td').css("width", "18px");
       $('#gameboard').css('width', '960px');
       $('#gameboard').css('height', '630px');
+      $('#gameboard').css('left', '+30px');
       $('#lowerpad').css('top','70px');
-      $('#lowerpad').css('left','-36px');
-      $('#upperpad').css('left','-33px');
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom1').addClass('activebut');
       actvbottombut="bottom1";
@@ -371,8 +370,7 @@ class Lowerpad_ extends Component{
       $('#gameboard').css('width', '1180px');
       $('#gameboard').css('height', '890px');
       $('#lowerpad').css('top','70px');
-      $('#lowerpad').css('left','36px');
-      $('#upperpad').css('left','33px');
+
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom2').addClass('activebut');
       actvbottombut="bottom2";
