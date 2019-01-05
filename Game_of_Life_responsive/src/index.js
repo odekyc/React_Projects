@@ -250,7 +250,7 @@ class Upperpad_ extends Component {
       return(
 
        <div id="upperpad">
-    <div id="upperbut">
+    <div id="upperbuts">
      <Button id={"top1"} setClass={"button activebut"} handleClick={ () => this.Run() } title={"Run"}></Button>
       <Button id={"top2"}  setClass={"button "} handleClick={ () => this.Pause() } title={"Pause"}></Button>
         <Button id={"top3"} setClass={"button"} handleClick={ () => this.Clear() } title={"Clear"}></Button>
@@ -329,7 +329,7 @@ class Lowerpad_ extends Component{
     
     <p id="board_sz">Board Size:</p>
     <br />
-    <p id="sim_spd"> Sim Speed</p>
+    <p id="sim_spd"> Sim Speed:</p>
     <div id="lowerbuts">
     <Button id={"bottom1"}  setClass={"button"}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
     <Button id={"bottom2"} setClass={"button activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
