@@ -388,12 +388,12 @@ class Lowerpad_ extends Component{
         return;
       }
     this.props.changedimension('50X30'); 
-     $('td').css("height", "18px");
-       $('td').css("width", "18px");
-      $('#gameboard').css('width', '960px');
-      $('#gameboard').css('height', '630px');
+          window_width = $(window).width();
+      $('#gameboard').css('width', 0.72*window_width+'px');
+      $('#gameboard').css('height', 0.52*window_width+'px');
       $('#lowerpad').css('top','70px');
-      $('#gameboard').css('right','0px');
+       // $('td').css("height", "0.005%");
+       // $('td').css("width", "1%");
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom1').addClass('activebut');
       actvbottombut="bottom1";
@@ -404,12 +404,12 @@ class Lowerpad_ extends Component{
         return;
       }
       this.props.changedimension('70X50'); 
-      $('td').css("height", "15px");
-       $('td').css("width", "15px");
-      $('#gameboard').css('width', '1180px');
-      $('#gameboard').css('height', '890px');
+       window_width = $(window).width();
+      $('#gameboard').css('width', 0.875*window_width+'px');
+      $('#gameboard').css('height', 0.65*window_width+'px');
       $('#lowerpad').css('top','70px');
-      $('#gameboard').css('right','33px');
+      $('td').css("height", "2%");
+      $('td').css("width", "1.1%");
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom2').addClass('activebut');
       actvbottombut="bottom2";
