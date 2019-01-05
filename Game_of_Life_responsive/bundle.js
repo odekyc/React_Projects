@@ -75,6 +75,7 @@
 	var running = 0;
 	var runInt;
 	var gridCleared = false;
+	var cur_dimension = "medium";
 
 	//REACT & REDUX LIBRARIES SET UP
 	var _React = React,
@@ -88,6 +89,50 @@
 	    connect = _ReactRedux2.connect;
 	var _Redux2 = Redux,
 	    combineReducers = _Redux2.combineReducers;
+
+
+	var window_width = $(window).width();
+
+	$("#gameboard").css({ "top": 0.1 * window_width + "px",
+	  "height": 0.65 * window_width + "px"
+	});
+
+	$("#upperpad").css({ "top": 0.05 * window_width + "px",
+	  "height": 0.07 * window_width + "px"
+	});
+
+	$("#lowerpad").css({ "top": 0.73 * window_width + "px",
+	  "height": 0.12 * window_width + "px"
+	});
+
+	$(window).resize(function () {
+
+	  window_width = $(window).width();
+
+	  if (cur_dimension == "medium") {
+
+	    $("#gameboard").css({ "top": 0.1 * window_width + "px",
+	      "height": 0.65 * window_width + "px",
+	      "left": 0.065 * window_width + "px"
+	    });
+	    $("#lowerpad").css({ "top": 0.73 * window_width + "px",
+	      "height": 0.12 * window_width + "px"
+	    });
+	  } else if (cur_dimension == "small") {
+	    $("#gameboard").css({ "top": 0.1 * window_width + "px",
+	      "height": 0.61 * window_width + "px",
+	      "left": 0.14 * window_width + "px"
+	    });
+
+	    $('#lowerpad').css('top', 0.695 * window_width + 'px');
+
+	    $("#lowerpad").css("height", 0.12 * window_width + "px");
+	  }
+
+	  $("#upperpad").css({ "top": 0.05 * window_width + "px",
+	    "height": 0.07 * window_width + "px"
+	  });
+	});
 
 	//HELPERS - generate the gamestate by constructing 2d arrays
 
@@ -372,7 +417,7 @@
 	        { id: "upperpad" },
 	        React.createElement(
 	          "div",
-	          { id: "upperbut" },
+	          { id: "upperbuts" },
 	          React.createElement(Button, { id: "top1", setClass: "button activebut", handleClick: function handleClick() {
 	              return _this4.Run();
 	            }, title: "Run" }),
@@ -502,14 +547,14 @@
 	          React.createElement(
 	            "p",
 	            { id: "sim_spd" },
-	            " Sim Speed"
+	            " Sim Speed:"
 	          ),
 	          React.createElement(
 	            "div",
 	            { id: "lowerbuts" },
 	            React.createElement(Button, { id: "bottom1", setClass: "button", handleClick: function handleClick() {
 	                return _this6.changeDimSmall();
-	              }, title: "Size:50X30" }),
+	              }, title: "Size:50X27" }),
 	            React.createElement(Button, { id: "bottom2", setClass: "button activebut", handleClick: function handleClick() {
 	                return _this6.changeDimMed();
 	              }, title: "Size:70X50" }),
@@ -529,16 +574,19 @@
 	  }, {
 	    key: "changeDimSmall",
 	    value: function changeDimSmall() {
+	      cur_dimension = "small";
 	      if (actvbottombut == "bottom1") {
 	        return;
 	      }
-	      this.props.changedimension('50X30');
-	      $('td').css("height", "18px");
-	      $('td').css("width", "18px");
-	      $('#gameboard').css('width', '960px');
-	      $('#gameboard').css('height', '630px');
-	      $('#lowerpad').css('top', '70px');
-	      $('#gameboard').css('right', '0px');
+
+	      this.props.changedimension('50X27');
+	      window_width = $(window).width();
+	      $("#gameboard").css({ "width": "72%",
+	        "height": 0.61 * window_width + 'px',
+	        "left": 0.14 * window_width + "px"
+	      });
+	      $('#lowerpad').css('top', 0.695 * window_width + 'px');
+	      $('#grid').css('height', '87%');
 	      $('#' + actvbottombut).removeClass('activebut');
 	      $('#bottom1').addClass('activebut');
 	      actvbottombut = "bottom1";
@@ -546,16 +594,19 @@
 	  }, {
 	    key: "changeDimMed",
 	    value: function changeDimMed() {
+	      cur_dimension = "medium";
 	      if (actvbottombut == "bottom2") {
 	        return;
 	      }
+
 	      this.props.changedimension('70X50');
-	      $('td').css("height", "15px");
-	      $('td').css("width", "15px");
-	      $('#gameboard').css('width', '1180px');
-	      $('#gameboard').css('height', '890px');
-	      $('#lowerpad').css('top', '70px');
-	      $('#gameboard').css('right', '33px');
+	      window_width = $(window).width();
+	      $("#gameboard").css({ "width": "87.5%",
+	        "height": 0.65 * window_width + 'px',
+	        "left": 0.065 * window_width + "px"
+	      });
+	      $('#lowerpad').css('top', 0.73 * window_width + 'px');
+	      $('#grid').css('height', '85%');
 	      $('#' + actvbottombut).removeClass('activebut');
 	      $('#bottom2').addClass('activebut');
 	      actvbottombut = "bottom2";
@@ -605,7 +656,7 @@
 	var App = function App() {
 	  return React.createElement(
 	    "div",
-	    null,
+	    { id: "all-container" },
 	    React.createElement(Upperpad, null),
 	    React.createElement(Board, null),
 	    React.createElement(Lowerpad, null)
