@@ -11,7 +11,7 @@ body{
 #gameboard{
     position: absolute;
     top: 10%;
-    left: 6%;
+    left: 6.5%;
     background: #9999ff;
     height: 65%;
    width: 87.5%;
@@ -180,16 +180,16 @@ td {
 
 #bottom1{
      position: absolute;
-     top: 28px;
-     left: 290px;
+     top: 24%;
+     left: 41%;
    
 
 }
 
 #bottom2{
      position: absolute;
-     top: 28px;
-     left: 450px;
+     top: 24%;
+     left: 64%;
    
 }
 
@@ -197,22 +197,22 @@ td {
 
 #bottom3{
      position: absolute;
-     top: 83px;
-     left: 210px;
+     top: 75%;
+     left: 31%;
     
 }
 
 #bottom4{
      position: absolute;
-     top: 83px;
-     left: 370px;
+     top: 75%;
+     left: 52.5%;
  
 }
 
 #bottom5{
      position: absolute;
-     top: 83px;
-     left: 530px;
+     top: 75%;
+     left: 74%;
  
 }
 
