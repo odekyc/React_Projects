@@ -13,6 +13,7 @@ var actvstate="top1";
 var running=0;
 var runInt;
 var gridCleared=false;
+var cur_dimension = "medium";
 
 //REACT & REDUX LIBRARIES SET UP
 const { Component } = React;
@@ -42,9 +43,27 @@ const { combineReducers } = Redux;
       
       window_width = $(window).width();
 
-    $("#gameboard").css({"top": 0.1*window_width+"px",
-                        "height": 0.65*window_width+"px"
-    });
+    if(cur_dimension == "medium"){
+
+        $("#gameboard").css({"top": 0.1*window_width+"px",
+                            "height": 0.65*window_width+"px",
+                            "left":  0.065*window_width+"px"
+        });
+        $("#lowerpad").css({"top": 0.73*window_width+"px",
+                        "height": 0.12*window_width+"px"
+        });
+    }
+    else if(cur_dimension == "small"){
+        $("#gameboard").css({"top": 0.1*window_width+"px",
+                            "height": 0.61*window_width+"px",
+                            "left":  0.14*window_width+"px"
+        });
+
+         $('#lowerpad').css('top', 0.695*window_width+'px');
+
+        $("#lowerpad").css("height", 0.12*window_width+"px");
+    }
+
 
     $("#upperpad").css({"top": 0.05*window_width+"px",
                         "height": 0.07*window_width+"px"
@@ -370,7 +389,7 @@ class Lowerpad_ extends Component{
     <br />
     <p id="sim_spd"> Sim Speed:</p>
     <div id="lowerbuts">
-    <Button id={"bottom1"}  setClass={"button"}  handleClick={ () => this.changeDimSmall() } title={"Size:50X30"}></Button>
+    <Button id={"bottom1"}  setClass={"button"}  handleClick={ () => this.changeDimSmall() } title={"Size:50X27"}></Button>
     <Button id={"bottom2"} setClass={"button activebut"}  handleClick={ () => this.changeDimMed() } title={"Size:70X50"}></Button>
     <Button id={"bottom3"}  setClass={"button"}  title={"SLOW"} handleClick={ () => this.changeSpd(250, "bottom3") }></Button>
     <Button id={"bottom4"} setClass={"button activebut"}  title={"MEDIUM"} handleClick={ () => this.changeSpd(100, "bottom4") }></Button>
@@ -384,32 +403,38 @@ class Lowerpad_ extends Component{
   };
 
   changeDimSmall(){
+    cur_dimension="small";
     if (actvbottombut=="bottom1"){
         return;
       }
-    this.props.changedimension('50X30'); 
+
+    this.props.changedimension('50X27'); 
           window_width = $(window).width();
-      $('#gameboard').css('width', 0.72*window_width+'px');
-      $('#gameboard').css('height', 0.52*window_width+'px');
-      $('#lowerpad').css('top','70px');
-       // $('td').css("height", "0.005%");
-       // $('td').css("width", "1%");
+      $("#gameboard").css({"width": "72%",
+                            "height": 0.61*window_width+'px',
+                            "left":  0.14*window_width+"px"
+      });
+      $('#lowerpad').css('top', 0.695*window_width+'px');
+      $('#grid').css('height','87%');
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom1').addClass('activebut');
       actvbottombut="bottom1";
   }
 
   changeDimMed(){
+      cur_dimension="medium";
       if (actvbottombut=="bottom2"){
         return;
       }
+
       this.props.changedimension('70X50'); 
        window_width = $(window).width();
-      $('#gameboard').css('width', 0.875*window_width+'px');
-      $('#gameboard').css('height', 0.65*window_width+'px');
-      $('#lowerpad').css('top','70px');
-      $('td').css("height", "2%");
-      $('td').css("width", "1.1%");
+      $("#gameboard").css({"width": "87.5%",
+                          "height": 0.65*window_width+'px',
+                          "left":  0.065*window_width+"px"
+      });
+      $('#lowerpad').css('top',0.73*window_width+'px');
+       $('#grid').css('height','85%');
       $('#'+actvbottombut).removeClass('activebut');
       $('#bottom2').addClass('activebut');
       actvbottombut="bottom2";
