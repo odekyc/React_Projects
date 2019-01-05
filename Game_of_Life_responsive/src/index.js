@@ -70,9 +70,7 @@ const { combineReducers } = Redux;
     });
     
 
-     $("#lowerpad").css({"top": 0.73*window_width+"px",
-                        "height": 0.12*window_width+"px"
-    });
+   
 
 
 });
