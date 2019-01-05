@@ -21,6 +21,45 @@ const { Provider } = ReactRedux;
 const { connect } = ReactRedux;
 const { combineReducers } = Redux;
 
+
+   var window_width = $(window).width();
+
+   $("#gameboard").css({"top": 0.1*window_width+"px",
+                         "height": 0.65*window_width+"px"
+    });
+
+   $("#upperpad").css({"top": 0.05*window_width+"px",
+                        "height": 0.07*window_width+"px"
+    });
+    
+    $("#lowerpad").css({"top": 0.73*window_width+"px",
+                        "height": 0.12*window_width+"px"
+    });
+
+   
+
+   $(window).resize(function(){
+      
+      window_width = $(window).width();
+
+    $("#gameboard").css({"top": 0.1*window_width+"px",
+                        "height": 0.65*window_width+"px"
+    });
+
+    $("#upperpad").css({"top": 0.05*window_width+"px",
+                        "height": 0.07*window_width+"px"
+    });
+    
+
+     $("#lowerpad").css({"top": 0.73*window_width+"px",
+                        "height": 0.12*window_width+"px"
+    });
+
+
+});
+
+
+
 //HELPERS - generate the gamestate by constructing 2d arrays
 
 const EmptyGrid=(height, width)=>{
