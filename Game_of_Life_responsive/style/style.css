@@ -80,40 +80,38 @@ table {
   position:absolute;
   background-color: yellow;
   top: 73%;
-  left: 26%;
-  height: 140px;
-  width: 700px;
+  left: 25%;
+  height: 10%;
+  width: 50%;
   margin: auto;
-  border-radius: 12px;
+  border-radius: 1vw;
   font-size: 180%;
 
 }
 
 #top1{
      position: absolute;
-     top: 5px;
+     top: 10%;
+
   
 }
 
 
 #top2{
      position: absolute;
-     top: 5px;
-     left: 140px;
+     top: 10%;
+     left: 23%;
      
 }
 
 #top3{
      position: absolute;
-     left: 280px;
-     top: 5px;
+     left: 46%;
+     top: 10%;
    
 }
 
-button{
-   width: 100px;
-   margin-left: 70px;
-  
+button{  
    background-color: purple;
  }
 
@@ -128,8 +126,10 @@ td {
 
 #upperbut{
   position:absolute;
-  left: 20px;
-  top: 7px;
+  top: 8.5%;
+  left: 3%;
+  width: 85%;
+  height: 100%;
 }
 
 #gen_count{
@@ -145,11 +145,11 @@ td {
   position:absolute;
   background-color: #bfff00;
   top: 5%;
-  left: 26%;
-  height: 90px;
-  width: 700px;
+  left: 25%;
+  height: 7%;
+  width: 50%;
   margin: auto;
-  border-radius: 12px;
+  border-radius: 1vw;
   font-size: 180%;
 }
 
@@ -162,8 +162,8 @@ td {
 .button{
     color: white;
      font-size: 70%;
-      border-radius: 15px;
-       width: 130px;
+     border-radius: 2vw;
+     width: 19%;
     cursor: pointer;
 
 }
